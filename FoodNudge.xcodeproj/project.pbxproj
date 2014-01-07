@@ -14,14 +14,13 @@
 		0C3CAE9E1878FC76003A3ABD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAE9D1878FC76003A3ABD /* main.m */; };
 		0C3CAEA21878FC76003A3ABD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEA11878FC76003A3ABD /* AppDelegate.m */; };
 		0C3CAEA51878FC76003A3ABD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C3CAEA31878FC76003A3ABD /* Main.storyboard */; };
-		0C3CAEA81878FC76003A3ABD /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEA71878FC76003A3ABD /* FirstViewController.m */; };
-		0C3CAEAB1878FC76003A3ABD /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEAA1878FC76003A3ABD /* SecondViewController.m */; };
 		0C3CAEAD1878FC76003A3ABD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C3CAEAC1878FC76003A3ABD /* Images.xcassets */; };
 		0C3CAEB41878FC76003A3ABD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAEB31878FC76003A3ABD /* XCTest.framework */; };
 		0C3CAEB51878FC76003A3ABD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAE911878FC76003A3ABD /* Foundation.framework */; };
 		0C3CAEB61878FC77003A3ABD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAE951878FC76003A3ABD /* UIKit.framework */; };
 		0C3CAEBE1878FC77003A3ABD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBC1878FC77003A3ABD /* InfoPlist.strings */; };
 		0C3CAEC01878FC77003A3ABD /* FoodNudgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */; };
+		0C54922D187C5BE600086358 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C54922C187C5BE600086358 /* InitialViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,16 +45,14 @@
 		0C3CAEA01878FC76003A3ABD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0C3CAEA11878FC76003A3ABD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0C3CAEA41878FC76003A3ABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0C3CAEA61878FC76003A3ABD /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		0C3CAEA71878FC76003A3ABD /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		0C3CAEA91878FC76003A3ABD /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		0C3CAEAA1878FC76003A3ABD /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		0C3CAEAC1878FC76003A3ABD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0C3CAEB21878FC76003A3ABD /* FoodNudgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodNudgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3CAEB31878FC76003A3ABD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0C3CAEBB1878FC77003A3ABD /* FoodNudgeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FoodNudgeTests-Info.plist"; sourceTree = "<group>"; };
 		0C3CAEBD1878FC77003A3ABD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodNudgeTests.m; sourceTree = "<group>"; };
+		0C54922B187C5BE600086358 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
+		0C54922C187C5BE600086358 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,12 +115,10 @@
 				0C3CAEA01878FC76003A3ABD /* AppDelegate.h */,
 				0C3CAEA11878FC76003A3ABD /* AppDelegate.m */,
 				0C3CAEA31878FC76003A3ABD /* Main.storyboard */,
-				0C3CAEA61878FC76003A3ABD /* FirstViewController.h */,
-				0C3CAEA71878FC76003A3ABD /* FirstViewController.m */,
-				0C3CAEA91878FC76003A3ABD /* SecondViewController.h */,
-				0C3CAEAA1878FC76003A3ABD /* SecondViewController.m */,
 				0C3CAEAC1878FC76003A3ABD /* Images.xcassets */,
 				0C3CAE981878FC76003A3ABD /* Supporting Files */,
+				0C54922B187C5BE600086358 /* InitialViewController.h */,
+				0C54922C187C5BE600086358 /* InitialViewController.m */,
 			);
 			path = FoodNudge;
 			sourceTree = "<group>";
@@ -254,9 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C3CAEAB1878FC76003A3ABD /* SecondViewController.m in Sources */,
+				0C54922D187C5BE600086358 /* InitialViewController.m in Sources */,
 				0C3CAEA21878FC76003A3ABD /* AppDelegate.m in Sources */,
-				0C3CAEA81878FC76003A3ABD /* FirstViewController.m in Sources */,
 				0C3CAE9E1878FC76003A3ABD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +460,7 @@
 				0C3CAEC51878FC77003A3ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C3CAEC61878FC77003A3ABD /* Build configuration list for PBXNativeTarget "FoodNudgeTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +469,7 @@
 				0C3CAEC81878FC77003A3ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
