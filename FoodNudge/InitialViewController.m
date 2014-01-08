@@ -12,11 +12,34 @@
 
 -(void) viewDidLoad {
     [super viewDidLoad];
+    
+    UIDatePicker *picker = [[UIDatePicker alloc] init];
+    picker.datePickerMode = UIDatePickerModeDate;
+    [picker setDate:[NSDate date]];
+    [picker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    [self.dob setInputView:picker];
 }
 
--(IBAction)showMessage{
+-(void) updateTextField: (id) sender {
+    UIDatePicker *dateP  = (UIDatePicker*) self.dob.inputView;
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd/MM/yyy"];
+    NSString *dateFormatted = [format stringFromDate:dateP.date];
+    self.dob.text = dateFormatted;
+}
+
+-(IBAction) showMessage{
     NSLog(@"working!");
-    UIAlertView *test = [[UIAlertView alloc] initWithTitle:@"Working!" message:@"working, i hope?!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    
+    NSString *identifier = [[NSUUID UUID] UUIDString];
+    NSLog(@"%@", identifier);
+    
+    UIAlertView *test = [[UIAlertView alloc] initWithTitle: @"Working!"
+                                                   message: @"Hopefully this is working?!"
+                                                   delegate: nil
+                                         cancelButtonTitle: @"OK"
+                                         otherButtonTitles: nil];
     [test show ];
     
     NSLog(@"name: %@", _name.text);
