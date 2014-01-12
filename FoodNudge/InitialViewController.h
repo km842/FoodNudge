@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InitialViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>
+@interface InitialViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *dob;
 @property (weak, nonatomic) IBOutlet UITextField *height;
 @property (weak, nonatomic) IBOutlet UITextField *weight;
+
+@property (strong, nonatomic) NSMutableData *responseData;
+@property (strong, nonatomic) NSString *dateHolder;
 
 
 - (IBAction)showMessage;
