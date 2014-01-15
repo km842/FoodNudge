@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSURLConnectionDataDelegate>
 
+@property (strong, nonatomic) NSArray *tableData;
+@property (strong, nonatomic) NSMutableData *responseData;
+@property (weak, nonatomic) IBOutlet UITableView *table;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @end
