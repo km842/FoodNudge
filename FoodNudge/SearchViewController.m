@@ -12,19 +12,32 @@
 
 -(void) viewDidLoad {
     [super viewDidLoad];
-   
-//    _tableData = [[NSArray alloc] initWithObjects:@"Kunal", @"Tom B", @"Whitaker", @"Iain", @"Joe", @"00Beers", @"Skeff", @"Chuckles", @"Fen", @"James Kim", @"Freddie", @"Dai Greene",nil];
-    [self.indicator startAnimating];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/hello?id=chocolate"]];
-    _responseData = [[NSMutableData alloc] init];
-
-//    _responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [conn start];
-//    NSDictionary *output = [NSJSONSerialization JSONObjectWithData: _responseData options:0 error:nil];
-//    _tableData = [output objectForKey:@"Products"];
 }
 
+-(void) searchValue: (NSString *) withName {
+    [self.indicator startAnimating];
+    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/hello?id=%@", withName];
+    NSLog(@"%@", withName);
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:url]];
+    _responseData = [[NSMutableData alloc] init];
+    
+    //    _responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [conn start];
+    //    NSDictionary *output = [NSJSONSerialization JSONObjectWithData: _responseData options:0 error:nil];
+    //    _tableData = [output objectForKey:@"Products"];
+}
+
+-(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self searchValue:searchBar.text];
+    searchBar.text = @"";
+    [searchBar resignFirstResponder];
+    NSLog(@"%@", searchBar.text);
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
 #pragma mark - UITableViewDataSource methods
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_tableData count];
@@ -33,9 +46,9 @@
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
--(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Products";
-}
+//-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    return @"Products";
+//}
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString * cellIndentifier = @"Cell";
@@ -43,9 +56,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier: cellIndentifier];
     }
-    
-    cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] valueForKey:@"Name"];
-    cell.detailTextLabel.text = [[_tableData objectAtIndex:indexPath.row] valueForKey:@"ProductId"];
+        cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] valueForKey:@"Name"];
+        cell.detailTextLabel.text = [[_tableData objectAtIndex:indexPath.row] valueForKey:@"ProductId"];
+   
 //    cell.textLabel.text = [_tableData objectAtIndex:indexPath.row];
     return cell;
 }
