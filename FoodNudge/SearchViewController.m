@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "ProductDetailViewController.h"
 
 @implementation SearchViewController
 
@@ -16,6 +17,7 @@
 
 -(void) searchValue: (NSString *) withName {
     [self.indicator startAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/hello?id=%@", withName];
     NSLog(@"%@", withName);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:url]];
@@ -28,11 +30,17 @@
     //    _tableData = [output objectForKey:@"Products"];
 }
 
+- (void) viewDidDisappear:(BOOL)animated {
+    _tableData = nil;
+    [self.table reloadData];
+}
+
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self searchValue:searchBar.text];
+    NSString *withoutSpaces = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [self searchValue: withoutSpaces];
     searchBar.text = @"";
     [searchBar resignFirstResponder];
-    NSLog(@"%@", searchBar.text);
+    NSLog(@"%@", withoutSpaces);
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -65,7 +73,9 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"Selected :");
+    NSLog(@"Selected : %@", [[_tableData objectAtIndex:indexPath.row] valueForKey:@"Name"]);
+    _selectedRow = indexPath.row;
+    [self performSegueWithIdentifier:@"productDetail" sender:self];
 }
 
 #pragma mark - NSURLConnectionDeleage Methods
@@ -78,7 +88,28 @@
     _tableData = [output objectForKey:@"Products"];
     NSLog(@"%@", _tableData);
     [self.indicator stopAnimating];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self.table reloadData];
 }
+
+#pragma mark - Method to transfer data to next view
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"in here!");
+    if ([segue.identifier isEqualToString:@"productDetail"]) {
+        NSLog(@"here now");
+        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
+        NSLog(@"%ld", (long)indexPath.row);
+        ProductDetailViewController *dvc = (ProductDetailViewController *)segue.destinationViewController;
+        NSLog(@"controller instantiated");
+        NSLog(@"Option selected: %ld", (long)_selectedRow);
+        NSString * dvcPodName = [[_tableData objectAtIndex:_selectedRow] valueForKey:@"Name"];
+        NSLog(@"Product name is: %@", dvcPodName);
+        [dvc setProductName:dvcPodName];
+        NSString *prodID = [[_tableData objectAtIndex: _selectedRow] valueForKey:@"ProductId"];
+        NSLog(@"%@", prodID);
+        [dvc setProductId:prodID];
+            }
+}
+
 
 @end

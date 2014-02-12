@@ -21,7 +21,7 @@
     
     NSUserDefaults *checkUser = [NSUserDefaults standardUserDefaults];
     
-    if (! [checkUser stringForKey:@"id"]) {
+    if (![checkUser stringForKey:@"id"]) {
         NSLog(@"%@", [checkUser valueForKey:@"id"]);
         NSLog(@"There is no user registerd!");
         

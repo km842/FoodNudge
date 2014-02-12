@@ -21,6 +21,8 @@
 		0C3CAEBE1878FC77003A3ABD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBC1878FC77003A3ABD /* InfoPlist.strings */; };
 		0C3CAEC01878FC77003A3ABD /* FoodNudgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */; };
 		0C54922D187C5BE600086358 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C54922C187C5BE600086358 /* InitialViewController.m */; };
+		0C6D3664189ABB7A0081FD0B /* grid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C6D3663189ABB7A0081FD0B /* grid.jpg */; };
+		0C99D95818994BC500C6BE92 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */; };
 		0CC5C230188171BE00EC645B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5C22F188171BE00EC645B /* SearchViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,9 @@
 		0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodNudgeTests.m; sourceTree = "<group>"; };
 		0C54922B187C5BE600086358 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		0C54922C187C5BE600086358 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		0C6D3663189ABB7A0081FD0B /* grid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grid.jpg; path = ../../grid.jpg; sourceTree = "<group>"; };
+		0C99D95618994BC500C6BE92 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
+		0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		0CC5C22E188171BE00EC645B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		0CC5C22F188171BE00EC645B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +123,8 @@
 				0C3CAEA01878FC76003A3ABD /* AppDelegate.h */,
 				0C3CAEA11878FC76003A3ABD /* AppDelegate.m */,
 				0C3CAEA31878FC76003A3ABD /* Main.storyboard */,
+				0C99D95618994BC500C6BE92 /* ProductDetailViewController.h */,
+				0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */,
 				0CC5C22E188171BE00EC645B /* SearchViewController.h */,
 				0CC5C22F188171BE00EC645B /* SearchViewController.m */,
 				0C3CAEAC1878FC76003A3ABD /* Images.xcassets */,
@@ -131,6 +138,7 @@
 		0C3CAE981878FC76003A3ABD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0C6D3663189ABB7A0081FD0B /* grid.jpg */,
 				0C3CAE991878FC76003A3ABD /* FoodNudge-Info.plist */,
 				0C3CAE9A1878FC76003A3ABD /* InfoPlist.strings */,
 				0C3CAE9D1878FC76003A3ABD /* main.m */,
@@ -237,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C3CAEAD1878FC76003A3ABD /* Images.xcassets in Resources */,
+				0C6D3664189ABB7A0081FD0B /* grid.jpg in Resources */,
 				0C3CAE9C1878FC76003A3ABD /* InfoPlist.strings in Resources */,
 				0C3CAEA51878FC76003A3ABD /* Main.storyboard in Resources */,
 			);
@@ -258,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C54922D187C5BE600086358 /* InitialViewController.m in Sources */,
+				0C99D95818994BC500C6BE92 /* ProductDetailViewController.m in Sources */,
 				0C3CAEA21878FC76003A3ABD /* AppDelegate.m in Sources */,
 				0CC5C230188171BE00EC645B /* SearchViewController.m in Sources */,
 				0C3CAE9E1878FC76003A3ABD /* main.m in Sources */,

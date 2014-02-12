@@ -17,4 +17,6 @@
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
+
+@property (assign, nonatomic) NSInteger selectedRow;
 @end
