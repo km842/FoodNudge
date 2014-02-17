@@ -46,6 +46,7 @@
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
 }
+
 #pragma mark - UITableViewDataSource methods
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_tableData count];
