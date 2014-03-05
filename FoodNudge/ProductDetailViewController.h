@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Products;
 
-@interface ProductDetailViewController : UIViewController <NSURLConnectionDataDelegate, UIAlertViewDelegate>
+@interface ProductDetailViewController : UIViewController <NSURLConnectionDataDelegate, UIAlertViewDelegate> {
+    BOOL local;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *productImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *productNameLabel;
@@ -24,6 +27,9 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) NSURLConnection *conn;
 
+@property (nonatomic, retain) Products *product;
+
 - (IBAction)addToDiary:(id)sender;
+-(void) createLabels: (Products*) product;
 
 @end

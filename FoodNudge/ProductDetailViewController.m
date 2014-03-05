@@ -8,6 +8,8 @@
 
 #import "ProductDetailViewController.h"
 #import "SearchViewController.h"
+#import "Products.h"
+#import "ProductsDatabase.h"
 
 @interface ProductDetailViewController ()
 
@@ -27,9 +29,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"NOW IN THIS VIEW CONTROLLER");
-    NSLog(@"HERE: %@", _productName);
-    NSLog(@"id in here: %@", _productId);
+    local = NO;
+//    NSLog(@"NOW IN THIS VIEW CONTROLLER");
+//    NSLog(@"HERE: %@", _productName);
+//    NSLog(@"id in here: %@", _productId);
 //    _productNameLabel.text = @"Product Name Here";
 }
 
@@ -39,22 +42,27 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-//    self.navigationController.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
 
 
     
     //download our data here!
-    _responseData = [[NSMutableData alloc] init];
     
-    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/product?id=%@", _productId];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-     _conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    _product = [[ProductsDatabase database] getProductInfoById:_productId];
+    NSLog(@"%@", _product.name);
     
-    [_conn start];
-    
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    if (_product == nil) {
+        NSLog(@"started conncection");
+        _responseData = [[NSMutableData alloc] init];
         
-}
+        NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/product?id=%@", _productId];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+        _conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        [_conn start];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    } else {
+        [self createLabels:_product];
+    }
+   }
 
 -(void) viewWillDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -78,19 +86,24 @@
     NSArray *productInfo = [[NSArray alloc] init];
     productInfo = [output objectForKey: @"Products"];
     
-//    use products class?
+    NSString* calories = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Calories_Count"];
+    NSString *salt = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Salt_Grammes"];
+    NSString *sugar = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Sugar_Grammes"];
+    NSString *fat= [[productInfo objectAtIndex:0] valueForKey:@"RDA_Fat_Grammes"];
+    NSString *saturates= [[productInfo objectAtIndex:0] valueForKey:@"RDA_Saturates_Grammes"];
     
-    _calorieLabel.text = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Calories_Count"];
-    _saltLabel.text = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Salt_Grammes"];
-    _sugarLabel.text = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Sugar_Grammes"];
-    _fatLabel.text = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Fat_Grammes"];
-    _satFatLabel.text = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Saturates_Grammes"];
+    _product = [[Products alloc] initWithId:_productId name:_productName calories:calories sugar:sugar fat:fat saturates:saturates salt:salt];
+    [[ProductsDatabase database] insertProductwithId:_productId andName:_productName andCalories:calories andSugar:sugar andFat:fat andSaturates:saturates andSalt:salt];
+    
     NSString *imageURL = [[productInfo objectAtIndex:0] valueForKey:@"ImagePath"];
     NSData *imageData = [NSData dataWithContentsOfURL: [NSURL URLWithString:imageURL]];
     [_productImage setImage:[UIImage imageWithData:imageData]];
+
+    [self createLabels:_product];
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    NSLog(@"getting data : %@", [[productInfo objectAtIndex:0] valueForKey:@"RDA_Calories_Count"]);
-    NSLog(@"array data: %@", productInfo);
+//    NSLog(@"getting data : %@", [[productInfo objectAtIndex:0] valueForKey:@"RDA_Calories_Count"]);
+//    NSLog(@"array data: %@", productInfo);
 }
 -(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     UIAlertView *errorMessage = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to get information. Please check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -101,6 +114,14 @@
 - (IBAction)addToDiary:(id)sender {
     UIAlertView *addMessage = [[UIAlertView alloc] initWithTitle:@"Add to Diary" message:@"Add this item to dictionary" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Add", nil];
     [addMessage show];
+}
+
+-(void) createLabels: (Products*) product {
+    _calorieLabel.text = product.calories;
+    _sugarLabel.text = product.sugar;
+    _fatLabel.text = product.fat;
+    _satFatLabel.text = product.saturates;
+    _saltLabel.text = product.salt;
 }
 
 #pragma mark - UIAlertiView Delegate Methods

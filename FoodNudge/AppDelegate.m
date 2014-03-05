@@ -20,7 +20,7 @@
     
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 
-    [[ProductsDatabase database] getProductInfoById: [NSString stringWithFormat:@"%d",258147391]];
+//    [[ProductsDatabase database] insertProductwithId:@"pppppppp" andName:@"kaldflk" andCalories:@"kdsf" andSugar:@"asd" andFat:@"sad" andSaturates:@"asdasd" andSalt:@"sad"];
     return YES;
 }
 							

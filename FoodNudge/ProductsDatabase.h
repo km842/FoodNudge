@@ -18,5 +18,6 @@
 
 +(ProductsDatabase*) database;
 -(Products*) getProductInfoById: (NSString*)pid;
+-(void) insertProductwithId:(NSString*)pid andName:(NSString*)name andCalories:(NSString *)calories andSugar:(NSString*)sugar andFat:(NSString*)fat andSaturates:(NSString*)saturates andSalt:(NSString*)salt;
 
 @end
