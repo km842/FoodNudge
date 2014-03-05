@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) NSMutableArray *tableData;
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (assign, nonatomic) NSInteger selectedRow;
 
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ProductsFromDatesViewController.h"
+#import "ProductDetailViewController.h"
 
 @interface ProductsFromDatesViewController ()
 
@@ -23,6 +24,14 @@
     return self;
 }
 
+-(void) viewWillDisappear:(BOOL)animated {
+//    _tableData = nil;
+//    _tableDataId = nil;
+//    _date = nil;
+
+    [self.table reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,8 +41,10 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     _tableData = [[NSMutableArray alloc] init];
+    _tableDataId = [[NSMutableArray alloc] init];
     _responseData = [[NSMutableData alloc] init];
-    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/productsFromDate?date=\"%@\"", _date];
+    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/productsFromDate?date=%@", _date];
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [conn start];
@@ -47,11 +58,11 @@
 
 #pragma mark - UITableViewDataSource and Delegate Methods
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [_tableDataId count];
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_tableData count];
+    return 1;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -60,23 +71,48 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-//    add text here to cell
+    cell.textLabel.text = [_tableData objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [_tableDataId objectAtIndex:indexPath.row];
+   
     return cell;
 }
 
 #pragma mark - NSURLConnectionDataDelegate Methods
+-(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"%@", [error description]);
+}
+
 -(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_responseData appendData:data];
 }
 
 -(void) connectionDidFinishLoading:(NSURLConnection *)connection {
-    
+    NSArray *output = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:nil];
+    for (NSDictionary *dict in output) {
+        [_tableData addObject:[dict objectForKey:@"name"]];
+        [_tableDataId addObject:[dict objectForKey:@"productId"]];
+    }
+    [self.table reloadData];
+    NSLog(@"%@", _tableDataId);
 }
 
+#pragma mark - Segue preparation
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"segueToDetail"]) {
+        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
+        ProductDetailViewController *dvc = (ProductDetailViewController *)segue.destinationViewController;
+        NSLog(@"Option selected: %ld", (long)indexPath.row);
+        NSString * dvcPodName = [_tableData objectAtIndex:indexPath.row];
+        NSLog(@"Product name is: %@", dvcPodName);
+        [dvc setProductName:dvcPodName];
+        NSString *prodID = [_tableDataId objectAtIndex:indexPath.row];
+        NSLog(@"%@", prodID);
+        [dvc setProductId:prodID];
 
-
-
-
+    }
+    
+    
+}
 
 
 

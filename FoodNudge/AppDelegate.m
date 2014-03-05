@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ProductsDatabase.h"
+#import "Products.h"
 
 @implementation AppDelegate
 
@@ -15,7 +17,10 @@
 //    remove user default profiles
 //        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
 //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 
+    [[ProductsDatabase database] getProductInfoById: [NSString stringWithFormat:@"%d",258147391]];
     return YES;
 }
 							

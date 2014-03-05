@@ -12,6 +12,11 @@
 
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) NSMutableArray *tableData;
+@property (strong, nonatomic) NSMutableArray *tableDataId;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) NSString *date;
+
+@property (assign, nonatomic) NSInteger selectedRow;
+
+
 @end

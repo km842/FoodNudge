@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface ProductDetailViewController : UIViewController <NSURLConnectionDataDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *productImage;
 
@@ -21,6 +22,8 @@
 @property (weak, nonatomic) NSString *productName;
 @property (strong, nonatomic) NSString *productId;
 @property (strong, nonatomic) NSMutableData *responseData;
+@property (strong, nonatomic) NSURLConnection *conn;
+
 - (IBAction)addToDiary:(id)sender;
 
 @end

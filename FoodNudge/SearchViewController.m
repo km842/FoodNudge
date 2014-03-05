@@ -9,11 +9,27 @@
 #import "SearchViewController.h"
 #import "ProductDetailViewController.h"
 
+
 @implementation SearchViewController
 
 -(void) viewDidLoad {
     [super viewDidLoad];
+    
+//    NSArray *productInfo = [[ProductsDatabase database] productInfoWithId:269010582];
+//    for (Products *product in productInfo) {
+//        NSLog(@"%@", product.name);
+//    }
+    
+    
 }
+
+-(void) viewWillAppear:(BOOL)animated {
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    }
 
 -(void) searchValue: (NSString *) withName {
     [self.indicator startAnimating];

@@ -20,6 +20,26 @@
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
     NSUserDefaults *checkUser = [NSUserDefaults standardUserDefaults];
+
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+    
+    NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *DocumentDir = [Paths objectAtIndex:0];
+    _databasePath = [[NSString alloc] initWithString:[DocumentDir stringByAppendingPathComponent:@"products.sqlite3"]];
+    BOOL success;
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"products.sqlite3"];
+    success = [fm fileExistsAtPath:_databasePath];
+    if (success) {
+        NSLog(@"exists in docs directory");
+    } else {
+        [fm copyItemAtPath:bundlePath toPath:_databasePath error:nil];
+        NSLog(@"%hhd", [fm fileExistsAtPath:_databasePath]);
+    }
+    
+    
+
     
     if (![checkUser stringForKey:@"id"]) {
         NSLog(@"%@", [checkUser valueForKey:@"id"]);
@@ -59,20 +79,33 @@
 
 // Shows a message when a button is clicked.
 -(IBAction) showMessage{
-    NSLog(@"working!");
-    //need a check here to see if parameters are correct so nothing bad happens in the database, stop sql injection etc.
-    //add to ns user defaults
+
+    NSCharacterSet *alphaSet = [NSCharacterSet alphanumericCharacterSet];
+    NSCharacterSet *numberSet = [NSCharacterSet decimalDigitCharacterSet];
     
-    [self addUser];
-    
-    UIAlertView *test = [[UIAlertView alloc] initWithTitle: @"Congratulations! You've signed up!"
-                                                   message: @"You'll be automatically logged in from now on!"
-                                                   delegate: self
-                                         cancelButtonTitle: @"OK"
-                                         otherButtonTitles: nil];
-    [test show];
-    
-}
+    if ([[self.name.text stringByTrimmingCharactersInSet:alphaSet] isEqualToString:@""] && [[self.lastName.text stringByTrimmingCharactersInSet:alphaSet] isEqualToString: @""] && [[self.height.text stringByTrimmingCharactersInSet:numberSet] isEqualToString:@""] && [self.height.text intValue] < 220 & [self.height.text intValue] > 120 && [[self.weight.text stringByTrimmingCharactersInSet:numberSet] isEqualToString:@""] && [self.weight.text intValue] > 35 && [self.weight.text intValue] < 140) {
+       
+        [self addUser];
+
+        UIAlertView *good = [[UIAlertView alloc] initWithTitle: @"Congratulations! You've signed up!"
+                                                       message: @"You'll be automatically logged in from now on!"
+                                                      delegate: self
+                                             cancelButtonTitle: @"OK"
+                                             otherButtonTitles: nil];
+        [good setTag:1];
+        [good show];
+        
+    } else {
+        UIAlertView *nameWrong = [[UIAlertView alloc] initWithTitle: @"Invalid Input!"
+                                                            message: @"Please check the data in the fields to ensure that they are valid!"
+                                                           delegate: self
+                                                  cancelButtonTitle: @"OK"
+                                                  otherButtonTitles: nil];
+        [nameWrong setTag:2];
+        [nameWrong show];
+
+        }
+    }
 
 // Called when a user imputs their details. Adds user details to local user database. TODO calls html to add to database.
 -(void) addUser {
@@ -81,12 +114,11 @@
     
     NSString *identifier = [[NSUUID UUID] UUIDString];
     NSLog(@"%@", identifier);
-    
-    // check parameters. if ok return ok message else return parameter error and clear field that provided error.
-    
+    NSString *name = [NSString stringWithFormat:@"%@ %@", self.name.text, self.lastName.text];
+        
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
     [preferences setValue:identifier forKey:@"id"];
-    [preferences setValue:self.name.text forKey:@"name"];
+    [preferences setValue:name forKey:@"name"];
     [preferences setValue:self.dob.text forKey:@"dob"];
     [preferences setValue:self.weight.text forKey:@"weight"];
     [preferences setValue:self.height.text forKey:@"height"];
@@ -98,7 +130,7 @@
     // Add to database here using post. create json object!
     NSDictionary *userInfo = @ {
         @"id" : identifier,
-        @"name" : self.name.text,
+        @"name" : name,
         @"dob" : _dateHolder,
         @"height" : self.height.text,
         @"weight" : self.weight.text,
@@ -133,6 +165,13 @@
     NSLog(@"%@", [output objectForKey:@"id"]);
 }
 
+-(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    UIAlertView *failedConnection = [[UIAlertView alloc] initWithTitle:@"Sign Up Failure" message:@"An internet error occured so we could not sign you up. Please try Again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [failedConnection setTag:3];
+    [failedConnection show];
+    
+}
+
 #pragma mark - UITextfieldDelegate
 // Textfield delegate method to return the keyboard when DONE button is pressed.
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {
@@ -143,12 +182,17 @@
 #pragma mark - UIALertViewDelegate
 // Alert View delegate method when button is pressed to clear the textfields.
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    self.name.text = @"";
-    self.dob.text = @"";
-    self.height.text = @"";
-    self.weight.text = @"";
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
-    [self performSegueWithIdentifier:@"signUpSegueNo" sender:nil];
+    if (alertView.tag == 1) {
+        self.name.text = @"";
+        self.dob.text = @"";
+        self.height.text = @"";
+        self.weight.text = @"";
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        [self performSegueWithIdentifier:@"signUpSegueNo" sender:nil];
+    } else {
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+    }
+    
 }
 
 @end

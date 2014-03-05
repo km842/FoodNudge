@@ -22,10 +22,17 @@
 		0C3CAEC01878FC77003A3ABD /* FoodNudgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */; };
 		0C3F0EAE18B22D0300C58E0C /* DiaryDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */; };
 		0C3F0EB118B261A800C58E0C /* ProductsFromDatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */; };
+		0C51B80A18BCDF6600F063A6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C51B80918BCDF6500F063A6 /* MapKit.framework */; };
+		0C51B80D18BCDF8600F063A6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C51B80C18BCDF8600F063A6 /* MapViewController.m */; };
 		0C54922D187C5BE600086358 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C54922C187C5BE600086358 /* InitialViewController.m */; };
+		0C57672C18C100F8006108CF /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C57672B18C100F8006108CF /* MapPoint.m */; };
 		0C6D3664189ABB7A0081FD0B /* grid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C6D3663189ABB7A0081FD0B /* grid.jpg */; };
 		0C99D95818994BC500C6BE92 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */; };
 		0CC5C230188171BE00EC645B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC5C22F188171BE00EC645B /* SearchViewController.m */; };
+		0CD6004B18C643D500915E02 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD6004A18C643D500915E02 /* libsqlite3.0.dylib */; };
+		0CD6004D18C643E900915E02 /* products.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CD6004C18C643E900915E02 /* products.sqlite3 */; };
+		0CD6005318C660F500915E02 /* Products.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6005218C660F500915E02 /* Products.m */; };
+		0CD6005618C6669300915E02 /* ProductsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6005518C6669300915E02 /* ProductsDatabase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,13 +67,24 @@
 		0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryDateViewController.m; sourceTree = "<group>"; };
 		0C3F0EAF18B261A800C58E0C /* ProductsFromDatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsFromDatesViewController.h; sourceTree = "<group>"; };
 		0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsFromDatesViewController.m; sourceTree = "<group>"; };
+		0C51B80918BCDF6500F063A6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0C51B80B18BCDF8600F063A6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = ../MapViewController.h; sourceTree = "<group>"; };
+		0C51B80C18BCDF8600F063A6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = ../MapViewController.m; sourceTree = "<group>"; };
 		0C54922B187C5BE600086358 /* InitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
 		0C54922C187C5BE600086358 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		0C57672A18C100F8006108CF /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
+		0C57672B18C100F8006108CF /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
 		0C6D3663189ABB7A0081FD0B /* grid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grid.jpg; path = ../../grid.jpg; sourceTree = "<group>"; };
 		0C99D95618994BC500C6BE92 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDetailViewController.h; sourceTree = "<group>"; };
 		0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDetailViewController.m; sourceTree = "<group>"; };
 		0CC5C22E188171BE00EC645B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		0CC5C22F188171BE00EC645B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		0CD6004A18C643D500915E02 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		0CD6004C18C643E900915E02 /* products.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = products.sqlite3; path = ../../../../products.sqlite3; sourceTree = "<group>"; };
+		0CD6005118C660F500915E02 /* Products.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Products.h; sourceTree = "<group>"; };
+		0CD6005218C660F500915E02 /* Products.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Products.m; sourceTree = "<group>"; };
+		0CD6005418C6669300915E02 /* ProductsDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDatabase.h; sourceTree = "<group>"; };
+		0CD6005518C6669300915E02 /* ProductsDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDatabase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CD6004B18C643D500915E02 /* libsqlite3.0.dylib in Frameworks */,
+				0C51B80A18BCDF6600F063A6 /* MapKit.framework in Frameworks */,
 				0C3CAE941878FC76003A3ABD /* CoreGraphics.framework in Frameworks */,
 				0C3CAE961878FC76003A3ABD /* UIKit.framework in Frameworks */,
 				0C3CAE921878FC76003A3ABD /* Foundation.framework in Frameworks */,
@@ -115,6 +135,8 @@
 		0C3CAE901878FC76003A3ABD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CD6004A18C643D500915E02 /* libsqlite3.0.dylib */,
+				0C51B80918BCDF6500F063A6 /* MapKit.framework */,
 				0C3CAE911878FC76003A3ABD /* Foundation.framework */,
 				0C3CAE931878FC76003A3ABD /* CoreGraphics.framework */,
 				0C3CAE951878FC76003A3ABD /* UIKit.framework */,
@@ -127,6 +149,10 @@
 			isa = PBXGroup;
 			children = (
 				0C3CAEA31878FC76003A3ABD /* Main.storyboard */,
+				0C51B80B18BCDF8600F063A6 /* MapViewController.h */,
+				0C51B80C18BCDF8600F063A6 /* MapViewController.m */,
+				0C57672A18C100F8006108CF /* MapPoint.h */,
+				0C57672B18C100F8006108CF /* MapPoint.m */,
 				0C3F0EAF18B261A800C58E0C /* ProductsFromDatesViewController.h */,
 				0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */,
 				0C54922B187C5BE600086358 /* InitialViewController.h */,
@@ -137,6 +163,10 @@
 				0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */,
 				0CC5C22E188171BE00EC645B /* SearchViewController.h */,
 				0CC5C22F188171BE00EC645B /* SearchViewController.m */,
+				0CD6005118C660F500915E02 /* Products.h */,
+				0CD6005218C660F500915E02 /* Products.m */,
+				0CD6005418C6669300915E02 /* ProductsDatabase.h */,
+				0CD6005518C6669300915E02 /* ProductsDatabase.m */,
 				0C3F0EAC18B22D0300C58E0C /* DiaryDateViewController.h */,
 				0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */,
 				0C3CAEAC1878FC76003A3ABD /* Images.xcassets */,
@@ -148,6 +178,7 @@
 		0C3CAE981878FC76003A3ABD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0CD6004C18C643E900915E02 /* products.sqlite3 */,
 				0C6D3663189ABB7A0081FD0B /* grid.jpg */,
 				0C3CAE991878FC76003A3ABD /* FoodNudge-Info.plist */,
 				0C3CAE9A1878FC76003A3ABD /* InfoPlist.strings */,
@@ -256,6 +287,7 @@
 			files = (
 				0C3CAEAD1878FC76003A3ABD /* Images.xcassets in Resources */,
 				0C6D3664189ABB7A0081FD0B /* grid.jpg in Resources */,
+				0CD6004D18C643E900915E02 /* products.sqlite3 in Resources */,
 				0C3CAE9C1878FC76003A3ABD /* InfoPlist.strings in Resources */,
 				0C3CAEA51878FC76003A3ABD /* Main.storyboard in Resources */,
 			);
@@ -279,7 +311,11 @@
 				0C3F0EB118B261A800C58E0C /* ProductsFromDatesViewController.m in Sources */,
 				0C54922D187C5BE600086358 /* InitialViewController.m in Sources */,
 				0C99D95818994BC500C6BE92 /* ProductDetailViewController.m in Sources */,
+				0C51B80D18BCDF8600F063A6 /* MapViewController.m in Sources */,
 				0C3F0EAE18B22D0300C58E0C /* DiaryDateViewController.m in Sources */,
+				0CD6005618C6669300915E02 /* ProductsDatabase.m in Sources */,
+				0C57672C18C100F8006108CF /* MapPoint.m in Sources */,
+				0CD6005318C660F500915E02 /* Products.m in Sources */,
 				0C3CAEA21878FC76003A3ABD /* AppDelegate.m in Sources */,
 				0CC5C230188171BE00EC645B /* SearchViewController.m in Sources */,
 				0C3CAE9E1878FC76003A3ABD /* main.m in Sources */,

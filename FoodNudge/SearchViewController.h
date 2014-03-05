@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 
+
 @property (assign, nonatomic) NSInteger selectedRow;
 @end

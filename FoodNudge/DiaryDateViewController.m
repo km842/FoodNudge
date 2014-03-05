@@ -31,7 +31,11 @@
 }
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    NSLog(@"Now in dd viEW CONTROLLER");
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
     _tableData = [[NSMutableArray alloc] init];
     _responseData = [[NSMutableData alloc] init];
     NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/getDates"];
@@ -54,14 +58,10 @@
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Connection did finish loading");
     NSArray *array = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:nil];
-    NSLog(@"here");
-    NSLog(@"%d", [array count]);
     for (NSDictionary *dict in array) {
-        NSLog(@"%@", [dict objectForKey:@"dateConsumed"]);
+//        NSLog(@"%@", [dict objectForKey:@"dateConsumed"]);
         [_tableData addObject: [dict objectForKey:@"dateConsumed"]];
-        NSLog(@"%d", [_tableData count]);
     }
     [self.table reloadData];
 }
@@ -72,7 +72,6 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Count = %i", [_tableData count]);
     return [_tableData count];
 }
 
@@ -87,14 +86,17 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"selected row");
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    _selectedRow = indexPath.row;
+    [self performSegueWithIdentifier:@"toProducts" sender:self];
+    NSLog(@"selected row number: %i", _selectedRow);
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toProducts"]) {
-        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
         ProductsFromDatesViewController *dvc = (ProductsFromDatesViewController *) segue.destinationViewController;
-        NSString *date = [_tableData objectAtIndex:indexPath.row];
+        NSString *date = [_tableData objectAtIndex:_selectedRow];
+        NSLog(@"chosen row in here: %i", _selectedRow);
         [dvc setDate:date];
     }
 }

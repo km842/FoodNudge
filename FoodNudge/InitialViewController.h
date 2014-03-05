@@ -17,6 +17,10 @@
 
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) NSString *dateHolder;
+@property (weak, nonatomic) IBOutlet UITextField *lastName;
+
+@property (strong, nonatomic) NSString *databasePath;
+
 
 
 - (IBAction)showMessage;
