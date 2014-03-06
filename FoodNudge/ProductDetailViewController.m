@@ -10,6 +10,7 @@
 #import "SearchViewController.h"
 #import "Products.h"
 #import "ProductsDatabase.h"
+#import "DiaryDatabase.h"
 
 @interface ProductDetailViewController ()
 
@@ -102,8 +103,6 @@
     [self createLabels:_product];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//    NSLog(@"getting data : %@", [[productInfo objectAtIndex:0] valueForKey:@"RDA_Calories_Count"]);
-//    NSLog(@"array data: %@", productInfo);
 }
 -(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     UIAlertView *errorMessage = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to get information. Please check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -127,13 +126,31 @@
 #pragma mark - UIAlertiView Delegate Methods
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"clicked button = %i", buttonIndex);
     if (buttonIndex == 0) {
         [alertView dismissWithClickedButtonIndex:0 animated:YES];
     }
     else if (buttonIndex == 1) {
-        NSLog(@"hit okay button!");
-//      add to database here! then prop view controller
+//      ADD TO SQL DATABAse + CHECK USER DEFAULTS AND SEND USER NUMBER !!!!!!!!!!!!!
+        [[DiaryDatabase database] insertIntoDatabase:_productId];
+    
+        NSDate *date = [[NSDate alloc] init];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSDictionary *diaryInfo = @ {
+            @"id" : @"100",
+            @"productCode" : _productId,
+            @"date" : [dateFormat stringFromDate:date]
+        };
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/insertIntoDiary"]];
+        NSError *err;
+        NSData *jsonRequest = [NSJSONSerialization dataWithJSONObject:diaryInfo options:0 error:&err];
+        
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:jsonRequest];
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:nil startImmediately:NO];
+        [connection start];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

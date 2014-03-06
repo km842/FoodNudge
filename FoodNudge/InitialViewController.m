@@ -37,10 +37,7 @@
         [fm copyItemAtPath:bundlePath toPath:_databasePath error:nil];
         NSLog(@"%hhd", [fm fileExistsAtPath:_databasePath]);
     }
-    
-    
 
-    
     if (![checkUser stringForKey:@"id"]) {
         NSLog(@"%@", [checkUser valueForKey:@"id"]);
         NSLog(@"There is no user registerd!");
@@ -147,6 +144,7 @@
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
     [connection scheduleInRunLoop: [NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     [connection start];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
 }
 
@@ -163,6 +161,7 @@
     NSLog(@"to parse return info");
     NSDictionary *output = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:nil];
     NSLog(@"%@", [output objectForKey:@"id"]);
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 -(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

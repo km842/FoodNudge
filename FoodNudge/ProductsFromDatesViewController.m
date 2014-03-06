@@ -8,6 +8,8 @@
 
 #import "ProductsFromDatesViewController.h"
 #import "ProductDetailViewController.h"
+#import "DiaryDatabase.h"
+//#import "Products.h"
 
 @interface ProductsFromDatesViewController ()
 
@@ -25,9 +27,6 @@
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
-//    _tableData = nil;
-//    _tableDataId = nil;
-//    _date = nil;
 
     [self.table reloadData];
 }
@@ -36,18 +35,24 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    _tableData = [[NSMutableArray alloc] init];
+    NSLog(@"Date in dates view controller: %@", _date);
+    _tableData = [[DiaryDatabase database] productIdFromDate:_date];
+    [self.table reloadData];
+
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    _tableData = [[NSMutableArray alloc] init];
-    _tableDataId = [[NSMutableArray alloc] init];
-    _responseData = [[NSMutableData alloc] init];
-    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/productsFromDate?date=%@", _date];
+//    _tableDataId = [[NSMutableArray alloc] init];
+//    _responseData = [[NSMutableData alloc] init];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [conn start];
+//    SEND USER ID TOO.
+    
+//    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/productsFromDate?date=%@", _date];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//    [conn start];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,7 +63,7 @@
 
 #pragma mark - UITableViewDataSource and Delegate Methods
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_tableDataId count];
+    return [_tableData count];
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
@@ -71,9 +76,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [_tableData objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [_tableDataId objectAtIndex:indexPath.row];
-   
+//    cell.textLabel.text = [_tableData objectAtIndex:indexPath.row];
+//    cell.detailTextLabel.text = [_tableDataId objectAtIndex:indexPath.row];
+
+    cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] name];
     return cell;
 }
 

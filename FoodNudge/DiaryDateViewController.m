@@ -8,6 +8,7 @@
 
 #import "DiaryDateViewController.h"
 #import "ProductsFromDatesViewController.h"
+#import "DiaryDatabase.h"
 
 @interface DiaryDateViewController ()
 
@@ -38,10 +39,14 @@
 
     _tableData = [[NSMutableArray alloc] init];
     _responseData = [[NSMutableData alloc] init];
-    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/getDates"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [conn start];
+    
+//    add user defaults here!!!!!!!!!!
+
+    _tableData = [[DiaryDatabase database] uniqueDates];
+//    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/getDates"];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+//    [conn start];
     
 }
 
@@ -89,14 +94,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _selectedRow = indexPath.row;
     [self performSegueWithIdentifier:@"toProducts" sender:self];
-    NSLog(@"selected row number: %i", _selectedRow);
+//    NSLog(@"selected row number: %i", _selectedRow);
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toProducts"]) {
         ProductsFromDatesViewController *dvc = (ProductsFromDatesViewController *) segue.destinationViewController;
         NSString *date = [_tableData objectAtIndex:_selectedRow];
-        NSLog(@"chosen row in here: %i", _selectedRow);
+//        NSLog(@"chosen row in here: %i", _selectedRow);
         [dvc setDate:date];
     }
 }

@@ -22,6 +22,7 @@
 		0C3CAEC01878FC77003A3ABD /* FoodNudgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */; };
 		0C3F0EAE18B22D0300C58E0C /* DiaryDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */; };
 		0C3F0EB118B261A800C58E0C /* ProductsFromDatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */; };
+		0C42667618C7A1D3001F1B40 /* DiaryDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C42667518C7A1D3001F1B40 /* DiaryDatabase.m */; };
 		0C51B80A18BCDF6600F063A6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C51B80918BCDF6500F063A6 /* MapKit.framework */; };
 		0C51B80D18BCDF8600F063A6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C51B80C18BCDF8600F063A6 /* MapViewController.m */; };
 		0C54922D187C5BE600086358 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C54922C187C5BE600086358 /* InitialViewController.m */; };
@@ -67,6 +68,8 @@
 		0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryDateViewController.m; sourceTree = "<group>"; };
 		0C3F0EAF18B261A800C58E0C /* ProductsFromDatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsFromDatesViewController.h; sourceTree = "<group>"; };
 		0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsFromDatesViewController.m; sourceTree = "<group>"; };
+		0C42667418C7A1D3001F1B40 /* DiaryDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryDatabase.h; sourceTree = "<group>"; };
+		0C42667518C7A1D3001F1B40 /* DiaryDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryDatabase.m; sourceTree = "<group>"; };
 		0C51B80918BCDF6500F063A6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0C51B80B18BCDF8600F063A6 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = ../MapViewController.h; sourceTree = "<group>"; };
 		0C51B80C18BCDF8600F063A6 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = ../MapViewController.m; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				0CD6005218C660F500915E02 /* Products.m */,
 				0CD6005418C6669300915E02 /* ProductsDatabase.h */,
 				0CD6005518C6669300915E02 /* ProductsDatabase.m */,
+				0C42667418C7A1D3001F1B40 /* DiaryDatabase.h */,
+				0C42667518C7A1D3001F1B40 /* DiaryDatabase.m */,
 				0C3F0EAC18B22D0300C58E0C /* DiaryDateViewController.h */,
 				0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */,
 				0C3CAEAC1878FC76003A3ABD /* Images.xcassets */,
@@ -308,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C42667618C7A1D3001F1B40 /* DiaryDatabase.m in Sources */,
 				0C3F0EB118B261A800C58E0C /* ProductsFromDatesViewController.m in Sources */,
 				0C54922D187C5BE600086358 /* InitialViewController.m in Sources */,
 				0C99D95818994BC500C6BE92 /* ProductDetailViewController.m in Sources */,

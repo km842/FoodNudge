@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface Products : NSObject {
-//    int _pid;
-//    NSString *_name;
-//    NSString *_calories;
-//    NSString *_sugar;
-//    NSString *_fat;
-//    NSString *_saturates;
-//    NSString *_salt;
 }
 
 @property (nonatomic, retain) NSString *pid;

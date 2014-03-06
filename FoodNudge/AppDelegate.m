@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ProductsDatabase.h"
+#import "DiaryDatabase.h"
 #import "Products.h"
 
 @implementation AppDelegate
@@ -21,6 +21,11 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 
 //    [[ProductsDatabase database] insertProductwithId:@"pppppppp" andName:@"kaldflk" andCalories:@"kdsf" andSugar:@"asd" andFat:@"sad" andSaturates:@"asdasd" andSalt:@"sad"];
+    [[DiaryDatabase database] insertIntoDatabase:[NSString stringWithFormat:@"%d", 260691779]];
+    [[DiaryDatabase database] selectAll];
+    NSLog(@"%@", [[DiaryDatabase database] productIdFromDate:@"2014-03-06"]);
+    
+//    [[DiaryDatabase database] deleteAll];
     return YES;
 }
 							

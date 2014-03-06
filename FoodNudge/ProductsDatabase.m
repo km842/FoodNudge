@@ -26,11 +26,7 @@ static ProductsDatabase *database;
     NSArray *Paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *DocumentDir = [Paths objectAtIndex:0];
     databasePath= [[NSString alloc] initWithString:[DocumentDir stringByAppendingPathComponent:@"products.sqlite3"]];
-//    if (sqlite3_open([databasePath UTF8String], &db) == SQLITE_OK) {
-//        NSLog(@"de opened");
-//    } else {
-//        NSLog(@"database failed to open: %s", sqlite3_errmsg(db));
-//    }
+
     return self;
 }
 
