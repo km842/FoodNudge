@@ -35,7 +35,7 @@
         NSLog(@"exists in docs directory");
     } else {
         [fm copyItemAtPath:bundlePath toPath:_databasePath error:nil];
-        NSLog(@"%hhd", [fm fileExistsAtPath:_databasePath]);
+//        NSLog(@"%hhd", [fm fileExistsAtPath:_databasePath]);
     }
 
     if (![checkUser stringForKey:@"id"]) {

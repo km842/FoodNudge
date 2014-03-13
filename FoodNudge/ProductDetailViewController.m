@@ -11,6 +11,7 @@
 #import "Products.h"
 #import "ProductsDatabase.h"
 #import "DiaryDatabase.h"
+#import "ProgressHUD.h"
 
 @interface ProductDetailViewController ()
 
@@ -27,14 +28,11 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewDidLoad 
 {
     [super viewDidLoad];
     local = NO;
-//    NSLog(@"NOW IN THIS VIEW CONTROLLER");
-//    NSLog(@"HERE: %@", _productName);
-//    NSLog(@"id in here: %@", _productId);
-//    _productNameLabel.text = @"Product Name Here";
+
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -59,6 +57,7 @@
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
         _conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         [_conn start];
+        [ProgressHUD show:@"Loading Data....."];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     } else {
         [self createLabels:_product];
@@ -68,6 +67,7 @@
 -(void) viewWillDisappear:(BOOL)animated {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [_conn cancel];
+    [ProgressHUD dismiss];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,6 +103,7 @@
     [self createLabels:_product];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [ProgressHUD showSuccess:@"Food Data!" Interacton:YES];
 }
 -(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     UIAlertView *errorMessage = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Failed to get information. Please check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];

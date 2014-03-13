@@ -7,7 +7,7 @@
 //
 
 #import "DiaryDateViewController.h"
-#import "ProductsFromDatesViewController.h"
+#import "ProductsFromDatesTableViewController.h"
 #import "DiaryDatabase.h"
 
 @interface DiaryDateViewController ()
@@ -93,16 +93,18 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _selectedRow = indexPath.row;
-    [self performSegueWithIdentifier:@"toProducts" sender:self];
+//    [self performSegueWithIdentifier:@"toProducts" sender:self];
 //    NSLog(@"selected row number: %i", _selectedRow);
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toProducts"]) {
-        ProductsFromDatesViewController *dvc = (ProductsFromDatesViewController *) segue.destinationViewController;
-        NSString *date = [_tableData objectAtIndex:_selectedRow];
+        ProductsFromDatesTableViewController *dvc = (ProductsFromDatesTableViewController *) segue.destinationViewController;
+        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
+        NSString *date = [_tableData objectAtIndex:indexPath.row];
 //        NSLog(@"chosen row in here: %i", _selectedRow);
         [dvc setDate:date];
+        date = @"";
     }
 }
 @end

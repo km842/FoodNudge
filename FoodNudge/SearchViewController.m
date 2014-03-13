@@ -8,13 +8,13 @@
 
 #import "SearchViewController.h"
 #import "ProductDetailViewController.h"
+#import "ProgressHUD.h"
 
 
 @implementation SearchViewController
 
 -(void) viewDidLoad {
     [super viewDidLoad];    
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -22,6 +22,8 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.tabBarController.tabBar.barTintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
     
     }
 
@@ -36,12 +38,15 @@
     //    _responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [conn start];
+    [ProgressHUD show:@"Loading Data....."];
+    
     //    NSDictionary *output = [NSJSONSerialization JSONObjectWithData: _responseData options:0 error:nil];
     //    _tableData = [output objectForKey:@"Products"];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
     _tableData = nil;
+    [ProgressHUD dismiss];
     [self.table reloadData];
 }
 
@@ -54,6 +59,7 @@
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [ProgressHUD dismiss];
     [searchBar resignFirstResponder];
 }
 
@@ -97,6 +103,7 @@
 //    NSLog(@"%@", _tableData);
     [self.indicator stopAnimating];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [ProgressHUD showSuccess:@"Got your Data" Interacton:YES];
     [self.table reloadData];
 }
 

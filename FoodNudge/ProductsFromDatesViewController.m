@@ -9,7 +9,7 @@
 #import "ProductsFromDatesViewController.h"
 #import "ProductDetailViewController.h"
 #import "DiaryDatabase.h"
-//#import "Products.h"
+#import "Products.h"
 
 @interface ProductsFromDatesViewController ()
 
@@ -34,10 +34,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(0., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
+
 	// Do any additional setup after loading the view.
     _tableData = [[NSMutableArray alloc] init];
     NSLog(@"Date in dates view controller: %@", _date);
     _tableData = [[DiaryDatabase database] productIdFromDate:_date];
+//    NSLog(@"number of entries: %d", [_tableData count]);
+//    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+//    refresh.attributedTitle = @"Pull to refresh";
+//    [refresh addTarget:self action:Nil forControlEvents:UIControlEventValueChanged];
+//    self.refreshControl
     [self.table reloadData];
 
 }
@@ -80,6 +88,7 @@
 //    cell.detailTextLabel.text = [_tableDataId objectAtIndex:indexPath.row];
 
     cell.textLabel.text = [[_tableData objectAtIndex:indexPath.row] name];
+    cell.detailTextLabel.text = [[_tableData objectAtIndex:indexPath.row] pid];
     return cell;
 }
 
@@ -108,16 +117,13 @@
         NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
         ProductDetailViewController *dvc = (ProductDetailViewController *)segue.destinationViewController;
         NSLog(@"Option selected: %ld", (long)indexPath.row);
-        NSString * dvcPodName = [_tableData objectAtIndex:indexPath.row];
+        NSString * dvcPodName = [[_tableData objectAtIndex:indexPath.row] name];
         NSLog(@"Product name is: %@", dvcPodName);
         [dvc setProductName:dvcPodName];
-        NSString *prodID = [_tableDataId objectAtIndex:indexPath.row];
+        NSString *prodID = [[_tableData objectAtIndex:indexPath.row] pid];
         NSLog(@"%@", prodID);
         [dvc setProductId:prodID];
-
     }
-    
-    
 }
 
 

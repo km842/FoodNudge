@@ -41,7 +41,7 @@ static DiaryDatabase *database;
         {
             char *errMsg;
             
-            NSString *createTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS Diary(dateConsumed DATE, productId TEXT)"];
+            NSString *createTable = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS Diary(dateConsumed TEXT, productId TEXT)"];
             
             if (sqlite3_exec(db, [createTable UTF8String], NULL, NULL, &errMsg) != SQLITE_OK)
             {
@@ -65,7 +65,7 @@ static DiaryDatabase *database;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSLog(@"%@", [dateFormat stringFromDate:date]);
-    NSString *query = [NSString stringWithFormat:@"INSERT INTO Diary(dateConsumed, productId) VALUES (?, ?)"];
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO Diary(dateConsumed, productId) VALUES (date(?), ?)"];
     if (sqlite3_open([databasePath UTF8String], &db) == SQLITE_OK) {
         if (sqlite3_prepare_v2(db, [query UTF8String], -1, &stmt, nil) == SQLITE_OK) {
             NSString *dateS = [dateFormat stringFromDate:date];
@@ -106,7 +106,7 @@ static DiaryDatabase *database;
         NSString *query = [NSString stringWithFormat: @"DROP TABLE Diary"];
         char *err;
         if (sqlite3_exec(db, [query UTF8String], NULL, NULL, &err) == SQLITE_OK) {
-            NSLog(@"table deropped");
+            NSLog(@"table dropped");
         }
         sqlite3_close(db);
     } else {
@@ -119,7 +119,8 @@ static DiaryDatabase *database;
     sqlite3_stmt *stmt;
     
     if (sqlite3_open([databasePath UTF8String], &db) == SQLITE_OK)  {
-        NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT dateConsumed FROM Diary"];
+//        NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT dateConsumed FROM Diary"];
+        NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT strftime(\"%%Y-%%m-%%d\", dateConsumed) FROM Diary"];
         if (sqlite3_prepare_v2(db, [query UTF8String], -1, &stmt, nil) == SQLITE_OK ) {
             while (sqlite3_step(stmt) == SQLITE_ROW) {
                 NSString *date = [[NSString alloc] initWithUTF8String:(char*) sqlite3_column_text(stmt, 0)];
@@ -133,24 +134,24 @@ static DiaryDatabase *database;
     return retVals;
 }
 
+// SELECT fi.productId, fi.name FROM food_items fi INNER JOIN Diary di ON fi.productId = di.productId WHERE di.dateConsumed=\'%@\', date
+
 -(NSMutableArray*) productIdFromDate: (NSString*) date {
     NSLog(@"enttered");
     NSMutableArray *retVals = [[NSMutableArray alloc] init];
     sqlite3_stmt *stmt;
-    Products *product = [[Products alloc] init];
     if (sqlite3_open([databasePath UTF8String], &db) == SQLITE_OK) {
-        NSString *query = [NSString stringWithFormat:@"SELECT productId FROM Diary WHERE dateConsumed=2014-03-06"];
-        NSLog(@"Da: %@", date);
+       NSString *query = [NSString stringWithFormat:@"SELECT fi.productId, fi.name FROM food_items fi INNER JOIN Diary di ON fi.productId = di.productId WHERE di.dateConsumed=\'%@\'", date];
         if (sqlite3_prepare_v2(db, [query UTF8String], -1, &stmt, nil) == SQLITE_OK) {
             NSLog(@"hate prep");
             while (sqlite3_step(stmt) == SQLITE_ROW) {
-                NSLog(@"returning fuck all");
-//                NSString *pid = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 0)];
-//                NSString *name = [NSString stringWithUTF8String:(char*) sqlite3_column_text(stmt, 1)];
-//                [product setPid:pid];
-//                [product setName:name];
-//                [retVals addObject:product];
-                NSLog(@"Date passed = %@, Products: %s", date, (char*) sqlite3_column_text(stmt, 0));
+//                NSLog(@"returning fuck all");
+                NSString *pid = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 0)];
+                NSString *name = [NSString stringWithUTF8String:(char*) sqlite3_column_text(stmt, 1)];
+                Products *product = [[Products alloc] initWithId:pid name:name calories:@"" sugar:@"" fat:@"" saturates:@"" salt:@""];
+                [retVals addObject:product];
+//                NSLog(@"Date passed = %@, Products: %@, Name: %s", date, [product pid], (char*) sqlite3_column_text(stmt, 1));
+                NSLog(@"Product Id: %@, Name: %@", pid, name);
             }
             sqlite3_finalize(stmt);
         }

@@ -24,7 +24,7 @@
     [[DiaryDatabase database] insertIntoDatabase:[NSString stringWithFormat:@"%d", 260691779]];
     [[DiaryDatabase database] selectAll];
     NSLog(@"%@", [[DiaryDatabase database] productIdFromDate:@"2014-03-06"]);
-    
+//    NSLog(@"Unique Dates: %@", [[DiaryDatabase database] uniqueDates]);
 //    [[DiaryDatabase database] deleteAll];
     return YES;
 }

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C3CAE8D1878FC76003A3ABD"
-               BuildableName = "FoodNudge.app"
-               BlueprintName = "FoodNudge"
-               ReferencedContainer = "container:FoodNudge.xcodeproj">
+               BlueprintIdentifier = "2998ED7617E62B0900C791C6"
+               BuildableName = "app.app"
+               BlueprintName = "app"
+               ReferencedContainer = "container:app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,24 +28,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0C3CAEB11878FC76003A3ABD"
-               BuildableName = "FoodNudgeTests.xctest"
-               BlueprintName = "FoodNudgeTests"
-               ReferencedContainer = "container:FoodNudge.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C3CAE8D1878FC76003A3ABD"
-            BuildableName = "FoodNudge.app"
-            BlueprintName = "FoodNudge"
-            ReferencedContainer = "container:FoodNudge.xcodeproj">
+            BlueprintIdentifier = "2998ED7617E62B0900C791C6"
+            BuildableName = "app.app"
+            BlueprintName = "app"
+            ReferencedContainer = "container:app.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -61,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C3CAE8D1878FC76003A3ABD"
-            BuildableName = "FoodNudge.app"
-            BlueprintName = "FoodNudge"
-            ReferencedContainer = "container:FoodNudge.xcodeproj">
+            BlueprintIdentifier = "2998ED7617E62B0900C791C6"
+            BuildableName = "app.app"
+            BlueprintName = "app"
+            ReferencedContainer = "container:app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -79,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0C3CAE8D1878FC76003A3ABD"
-            BuildableName = "FoodNudge.app"
-            BlueprintName = "FoodNudge"
-            ReferencedContainer = "container:FoodNudge.xcodeproj">
+            BlueprintIdentifier = "2998ED7617E62B0900C791C6"
+            BuildableName = "app.app"
+            BlueprintName = "app"
+            ReferencedContainer = "container:app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
