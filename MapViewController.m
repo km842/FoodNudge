@@ -9,13 +9,12 @@
 #import "MapViewController.h"
 #import "MapPoint.h"
 
-@interface MapViewController ()
 
+@interface MapViewController () 
 @end
 
 
 @implementation MapViewController
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,6 +25,13 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated {
+    walkingSpeed = 5;
+    runningSpeed = 10;
+    averageHeartRate = 80;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    weight = [[defaults objectForKey:@"weight"] doubleValue];
+
     
     locationManager = [[CLLocationManager alloc] init];
     [locationManager setDelegate:self];
@@ -33,10 +39,13 @@
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     locationManager.distanceFilter = 100;
     [locationManager startUpdatingLocation];
-
-    MKCircle *radius = [MKCircle circleWithCenterCoordinate:locationManager.location.coordinate radius:1000];
+    
+    MKCircle *radius = [MKCircle circleWithCenterCoordinate:locationManager.location.coordinate radius:[self calculateWalking] * walkingSpeed * 1000];
     [self.mapView addOverlay:radius];
-   
+    NSLog(@"radius here is: %f", [self calculateWalking]);
+    
+    self.mapView.showsPointsOfInterest = YES;
+    
 }
 
 - (void)viewDidLoad
@@ -46,7 +55,7 @@
     [self.mapView setShowsUserLocation:YES];
     [_segmentedControl addTarget:self action:@selector(mapTypeChange:) forControlEvents:UIControlEventValueChanged];
     
-    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -59,7 +68,7 @@
     switch (selected) {
         case 0:
             self.mapView.mapType = MKMapTypeStandard;
-            _segmentedControl.tintColor = [UIColor blueColor];
+            _segmentedControl.tintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
             break;
         case 1:
             self.mapView.mapType = MKMapTypeSatellite;
@@ -74,6 +83,7 @@
             break;
     }
 }
+
 
 -(void) queryGoogle: (CLLocation*) point {
     NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/locations?lat=%f&long=%f", point.coordinate.latitude, point.coordinate.longitude];
@@ -178,5 +188,60 @@
         }
     }
 }
+
+#pragma mark - calculate distance using formulas
+
+-(double) calculateWalking {
+   //    double weight = 100; //user defaults
+    NSLog(@"CAlories val is : %f", _calories);
+    double time = _calories / (((0.0215 * pow(walkingSpeed, 3)) - (0.1765 * pow(walkingSpeed, 2)) + (0.8710 * walkingSpeed) + 1.4577) * weight);
+    NSLog(@"Time is: %f", time);
+    return time;
+}
+
+-(double) calculateRunning {
+//    double weight = 100; //user defaults
+//    double caloriesToBurn = 400; //needs to be sent from previous view controller - product detail
+    double distance = 0.0;
+    distance = (int)_calories /(((0.05 * 5) + 0.95) * weight) * [self VO2MAX];
+    return distance;
+}
+
+-(double)VO2MAX {
+    double age = 23;
+    double mhr = 208 - (0.7*age); //user defaults
+    double vo2 = 15.3 * (mhr/averageHeartRate);
+    double cff;
+    
+    if (vo2 < 44) {
+        cff = 1.07;
+    }
+    if (46 > vo2 >= 44) {
+        cff = 1.06;
+    }
+    if (48 > vo2 >= 46) {
+        cff = 1.05;
+    }
+    if (50 > vo2 >= 48) {
+        cff = 1.04;
+    }
+    if (52 > vo2 >= 50) {
+        cff = 1.03;
+    }
+    if (54 > vo2 >= 54) {
+        cff = 1.02;
+    }
+    if (56 > vo2 >= 54) {
+        cff = 1.01;
+    }
+    if (vo2 >= 56) {
+        cff = 1;
+    }
+    return cff;
+}
+
+
+
+
 
 @end

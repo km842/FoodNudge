@@ -40,14 +40,18 @@
 	// Do any additional setup after loading the view.
     _tableData = [[NSMutableArray alloc] init];
     NSLog(@"Date in dates view controller: %@", _date);
-    _tableData = [[DiaryDatabase database] productIdFromDate:_date];
 //    NSLog(@"number of entries: %d", [_tableData count]);
-//    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-//    refresh.attributedTitle = @"Pull to refresh";
-//    [refresh addTarget:self action:Nil forControlEvents:UIControlEventValueChanged];
-//    self.refreshControl
-    [self.table reloadData];
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to refresh"];
+    [refresh addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self setRefreshControl:refresh];
+}
 
+-(void) handleRefresh:(id) sender {
+    _tableData = [[DiaryDatabase database] productIdFromDate:_date];
+    NSLog(@"handling refresg");
+    [self.refreshControl endRefreshing];
+    [self.table reloadData];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -61,6 +65,11 @@
 //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
 //    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 //    [conn start];
+    NSLog(@"View will appear date: %@", _date);
+    _tableData = [[DiaryDatabase database] productIdFromDate:_date];
+    [self.table reloadData];
+
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Products.h"
 
 @interface FoodNudgeTests : XCTestCase
 
@@ -28,7 +29,17 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    Products *obj = [[Products alloc] init];
+    XCTAssertNil([obj name], @"sadsad");
+
+}
+
+-(void)testObject
+{
+    Products *obj = [[Products alloc] initWithId:@"111" name:@"appads" calories:@"sad" sugar:@"djas" fat:@"asldlsad" saturates:@"sda" salt:@"sadasd"];
+    XCTAssertEqual([obj pid], @"111", @"Correct instantiation");
+    XCTAssertNotNil(obj, @"Not empty");
 }
 
 @end

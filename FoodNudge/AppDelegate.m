@@ -9,11 +9,12 @@
 #import "AppDelegate.h"
 #import "DiaryDatabase.h"
 #import "Products.h"
+#import "InitialViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+
 //    remove user default profiles
 //        NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
 //        [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
@@ -21,11 +22,14 @@
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 
 //    [[ProductsDatabase database] insertProductwithId:@"pppppppp" andName:@"kaldflk" andCalories:@"kdsf" andSugar:@"asd" andFat:@"sad" andSaturates:@"asdasd" andSalt:@"sad"];
-    [[DiaryDatabase database] insertIntoDatabase:[NSString stringWithFormat:@"%d", 260691779]];
-    [[DiaryDatabase database] selectAll];
-    NSLog(@"%@", [[DiaryDatabase database] productIdFromDate:@"2014-03-06"]);
+//    [[DiaryDatabase database] insertIntoDatabase:[NSString stringWithFormat:@"%d", 260691779]];
+//    [[DiaryDatabase database] selectAll];
+//    NSLog(@"%@", [[DiaryDatabase database] productIdFromDate:@"2014-03-06"]);
 //    NSLog(@"Unique Dates: %@", [[DiaryDatabase database] uniqueDates]);
 //    [[DiaryDatabase database] deleteAll];
+    
+//    NSLog(@"Cals: %d", [[DiaryDatabase database] caloriesForTheDay]);
+    
     return YES;
 }
 							

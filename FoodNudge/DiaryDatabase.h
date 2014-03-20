@@ -21,5 +21,6 @@
 -(NSMutableArray*) productIdFromDate: (NSString*) date;
 -(void) selectAll;
 -(void) deleteAll;
+-(NSInteger) caloriesForTheDay;
 
 @end

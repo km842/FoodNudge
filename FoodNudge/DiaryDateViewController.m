@@ -36,18 +36,18 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName]];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-
+    
     _tableData = [[NSMutableArray alloc] init];
     _responseData = [[NSMutableData alloc] init];
     
-//    add user defaults here!!!!!!!!!!
-
-    _tableData = [[DiaryDatabase database] uniqueDates];
-//    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/getDates"];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-//    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-//    [conn start];
+    //    add user defaults here!!!!!!!!!!
     
+    _tableData = [[DiaryDatabase database] uniqueDates];
+    //    NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/getDates"];
+    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    //    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    //    [conn start];
+    [self.table reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +65,7 @@
 - (void) connectionDidFinishLoading:(NSURLConnection *)connection {
     NSArray *array = [NSJSONSerialization JSONObjectWithData:_responseData options:0 error:nil];
     for (NSDictionary *dict in array) {
-//        NSLog(@"%@", [dict objectForKey:@"dateConsumed"]);
+        //        NSLog(@"%@", [dict objectForKey:@"dateConsumed"]);
         [_tableData addObject: [dict objectForKey:@"dateConsumed"]];
     }
     [self.table reloadData];
@@ -86,15 +86,20 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [_tableData objectAtIndex:indexPath.row];
+    NSString *date = [_tableData objectAtIndex:indexPath.row];
+    NSLog(@"%@", date);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-mm-dd"];
+    NSDate *date1 = [formatter dateFromString:date];
+    [formatter setDateFormat:@"dd MMM, yyyy"];
+    cell.textLabel.text = [formatter stringFromDate:date1];
     return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _selectedRow = indexPath.row;
-//    [self performSegueWithIdentifier:@"toProducts" sender:self];
-//    NSLog(@"selected row number: %i", _selectedRow);
+
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -102,7 +107,7 @@
         ProductsFromDatesTableViewController *dvc = (ProductsFromDatesTableViewController *) segue.destinationViewController;
         NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
         NSString *date = [_tableData objectAtIndex:indexPath.row];
-//        NSLog(@"chosen row in here: %i", _selectedRow);
+        //        NSLog(@"chosen row in here: %i", _selectedRow);
         [dvc setDate:date];
         date = @"";
     }

@@ -41,8 +41,9 @@
 }
 -(void) update {
     _tableData = [[DiaryDatabase database] productIdFromDate:_date];
-    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
+
     
 }
 

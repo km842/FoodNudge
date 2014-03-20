@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSURLConnection *conn;
 
 @property (nonatomic, retain) Products *product;
+@property (weak, nonatomic) IBOutlet UILabel *caloriesLeftLabel;
 
 - (IBAction)addToDiary:(id)sender;
 -(void) createLabels: (Products*) product;

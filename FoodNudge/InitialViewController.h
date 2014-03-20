@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) NSString *databasePath;
 
+@property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 
 
 - (IBAction)showMessage;

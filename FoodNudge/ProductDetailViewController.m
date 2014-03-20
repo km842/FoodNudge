@@ -12,6 +12,7 @@
 #import "ProductsDatabase.h"
 #import "DiaryDatabase.h"
 #import "ProgressHUD.h"
+#import "MapViewController.h"
 
 @interface ProductDetailViewController ()
 
@@ -32,6 +33,11 @@
 {
     [super viewDidLoad];
     local = NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"USer id is : %@", [defaults objectForKey:@"id"]);
+    NSString *check = [NSString stringWithFormat:@"\'%@\'", [defaults objectForKey:@"id"]];
+    NSLog(@"user id 2 is :%@", check);
+
 
 }
 
@@ -61,6 +67,10 @@
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     } else {
         [self createLabels:_product];
+        [self performSelectorOnMainThread:@selector(createLabels:) withObject:_product waitUntilDone:YES];
+      
+        NSLog(@"lael text is %@", _calorieLabel.text);
+
     }
    }
 
@@ -96,9 +106,9 @@
     _product = [[Products alloc] initWithId:_productId name:_productName calories:calories sugar:sugar fat:fat saturates:saturates salt:salt];
     [[ProductsDatabase database] insertProductwithId:_productId andName:_productName andCalories:calories andSugar:sugar andFat:fat andSaturates:saturates andSalt:salt];
     
-    NSString *imageURL = [[productInfo objectAtIndex:0] valueForKey:@"ImagePath"];
-    NSData *imageData = [NSData dataWithContentsOfURL: [NSURL URLWithString:imageURL]];
-    [_productImage setImage:[UIImage imageWithData:imageData]];
+//    NSString *imageURL = [[productInfo objectAtIndex:0] valueForKey:@"ImagePath"];
+//    NSData *imageData = [NSData dataWithContentsOfURL: [NSURL URLWithString:imageURL]];
+//    [_productImage setImage:[UIImage imageWithData:imageData]];
 
     [self createLabels:_product];
     
@@ -122,7 +132,15 @@
     _fatLabel.text = product.fat;
     _satFatLabel.text = product.saturates;
     _saltLabel.text = product.salt;
-}
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber *n = [NSNumber numberWithInteger:2500 - [[DiaryDatabase database] caloriesForTheDay]];
+    
+//    NSString *cal = [NSString stringWithFormat:@"%d", 2500 - [[DiaryDatabase database] caloriesForTheDay]];
+//    NSLog(@"calorsadsa here : %@",cal);
+    
+    _caloriesLeftLabel.text = [formatter stringFromNumber:n];
+    }
 
 #pragma mark - UIAlertiView Delegate Methods
 
@@ -137,8 +155,11 @@
         NSDate *date = [[NSDate alloc] init];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSLog(@"USer id is : %@", [defaults objectForKey:@"id"]);
+        NSString *aposDate = [NSString stringWithFormat:@"\'%@\'", [dateFormat stringFromDate:date]];
         NSDictionary *diaryInfo = @ {
-            @"id" : @"100",
+            @"id" : [defaults objectForKey:@"id"],
             @"productCode" : _productId,
             @"date" : [dateFormat stringFromDate:date]
         };
@@ -150,9 +171,24 @@
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:jsonRequest];
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:nil startImmediately:NO];
-        [connection start];
+//        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:nil startImmediately:NO];
+//        [connection start];
+        NSURLResponse *response;
+        NSError *errr;
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&errr];
+//        NSLog(@"check data %@", [responseData length] == 0);
         [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toMap"]) {
+        MapViewController *dvc = (MapViewController*)segue.destinationViewController;
+        NSString *s = _calorieLabel.text;
+        double calories = [s doubleValue];
+        NSLog(@"setting calories at : %f", calories);
+        [dvc setCalories:calories];
+        
     }
 }
 @end

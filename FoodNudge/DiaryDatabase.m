@@ -32,7 +32,7 @@ static DiaryDatabase *database;
 -(void) createDatabase {
     NSArray* dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDirPath = [dirPaths objectAtIndex:0];
-        databasePath = [[NSString alloc] initWithString: [docsDirPath stringByAppendingPathComponent: @"products.sqlite3"]];
+    databasePath = [[NSString alloc] initWithString: [docsDirPath stringByAppendingPathComponent: @"products.sqlite3"]];
     NSFileManager *filemanager = [NSFileManager defaultManager];
     
     if ([filemanager fileExistsAtPath: databasePath ] == YES)
@@ -119,8 +119,7 @@ static DiaryDatabase *database;
     sqlite3_stmt *stmt;
     
     if (sqlite3_open([databasePath UTF8String], &db) == SQLITE_OK)  {
-//        NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT dateConsumed FROM Diary"];
-        NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT strftime(\"%%Y-%%m-%%d\", dateConsumed) FROM Diary"];
+        NSString *query = [NSString stringWithFormat:@"SELECT DISTINCT strftime(\"%%Y-%%m-%%d\", dateConsumed) FROM Diary ORDER By Date(dateConsumed) DESC"];
         if (sqlite3_prepare_v2(db, [query UTF8String], -1, &stmt, nil) == SQLITE_OK ) {
             while (sqlite3_step(stmt) == SQLITE_ROW) {
                 NSString *date = [[NSString alloc] initWithUTF8String:(char*) sqlite3_column_text(stmt, 0)];
@@ -134,23 +133,21 @@ static DiaryDatabase *database;
     return retVals;
 }
 
-// SELECT fi.productId, fi.name FROM food_items fi INNER JOIN Diary di ON fi.productId = di.productId WHERE di.dateConsumed=\'%@\', date
-
 -(NSMutableArray*) productIdFromDate: (NSString*) date {
     NSLog(@"enttered");
     NSMutableArray *retVals = [[NSMutableArray alloc] init];
     sqlite3_stmt *stmt;
     if (sqlite3_open([databasePath UTF8String], &db) == SQLITE_OK) {
-       NSString *query = [NSString stringWithFormat:@"SELECT fi.productId, fi.name FROM food_items fi INNER JOIN Diary di ON fi.productId = di.productId WHERE di.dateConsumed=\'%@\'", date];
+        NSString *query = [NSString stringWithFormat:@"SELECT fi.productId, fi.name FROM food_items fi INNER JOIN Diary di ON fi.productId = di.productId WHERE di.dateConsumed=\'%@\'", date];
         if (sqlite3_prepare_v2(db, [query UTF8String], -1, &stmt, nil) == SQLITE_OK) {
             NSLog(@"hate prep");
             while (sqlite3_step(stmt) == SQLITE_ROW) {
-//                NSLog(@"returning fuck all");
+                //                NSLog(@"returning fuck all");
                 NSString *pid = [NSString stringWithUTF8String:(char*)sqlite3_column_text(stmt, 0)];
                 NSString *name = [NSString stringWithUTF8String:(char*) sqlite3_column_text(stmt, 1)];
                 Products *product = [[Products alloc] initWithId:pid name:name calories:@"" sugar:@"" fat:@"" saturates:@"" salt:@""];
                 [retVals addObject:product];
-//                NSLog(@"Date passed = %@, Products: %@, Name: %s", date, [product pid], (char*) sqlite3_column_text(stmt, 1));
+                //                NSLog(@"Date passed = %@, Products: %@, Name: %s", date, [product pid], (char*) sqlite3_column_text(stmt, 1));
                 NSLog(@"Product Id: %@, Name: %@", pid, name);
             }
             sqlite3_finalize(stmt);
@@ -158,6 +155,33 @@ static DiaryDatabase *database;
         sqlite3_close(db);
     }
     return retVals;
+}
+
+-(NSInteger) caloriesForTheDay {
+    sqlite3_stmt *stmt;
+    NSInteger total = 0;
+    NSDate *date = [[NSDate alloc] init];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSLog(@"here %@", [formatter stringFromDate:date]);
+    if (sqlite3_open([databasePath UTF8String], &db) == SQLITE_OK) {
+        NSString *query = [NSString stringWithFormat:@"SELECT f.calories, f.name FROM food_items f INNER JOIN  Diary d ON f.productId = d.productId WHERE d.dateConsumed=\'%@\'", [formatter stringFromDate:date]];
+        NSLog(@"now here");
+        if (sqlite3_prepare_v2(db, [query UTF8String], -1, &stmt, nil) == SQLITE_OK) {
+            NSLog(@"breaking here");
+            while (sqlite3_step(stmt) == SQLITE_ROW) {
+                NSLog(@"inside while");
+                NSString * val = [NSString stringWithUTF8String:(char*) sqlite3_column_text(stmt, 0)];
+                NSString * name = [NSString stringWithUTF8String:(char*) sqlite3_column_text(stmt, 1)];
+
+                NSLog(@"calories: %@ and name: %@", val, name);
+                total = total + [val integerValue];
+            }
+            sqlite3_finalize(stmt);
+        }
+        sqlite3_close(db);
+    }
+    return total;
 }
 
 

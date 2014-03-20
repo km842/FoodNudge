@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0C9CEF18D8AAA700137D82 /* InitialViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0C9CEE18D8AAA700137D82 /* InitialViewControllerTest.m */; };
 		0C3CAE921878FC76003A3ABD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAE911878FC76003A3ABD /* Foundation.framework */; };
 		0C3CAE941878FC76003A3ABD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAE931878FC76003A3ABD /* CoreGraphics.framework */; };
 		0C3CAE961878FC76003A3ABD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAE951878FC76003A3ABD /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 		0CD6004B18C643D500915E02 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CD6004A18C643D500915E02 /* libsqlite3.0.dylib */; };
 		0CD6005318C660F500915E02 /* Products.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6005218C660F500915E02 /* Products.m */; };
 		0CD6005618C6669300915E02 /* ProductsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6005518C6669300915E02 /* ProductsDatabase.m */; };
+		0CD9828418D9AB0C004B46B1 /* ProductsDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9828318D9AB0C004B46B1 /* ProductsDatabaseTest.m */; };
+		0CD9828618D9AF83004B46B1 /* DiaryDatabaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CD9828518D9AF83004B46B1 /* DiaryDatabaseTest.m */; };
 		0CE0570F18C93223001BC4FC /* products.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 0CE0570E18C93223001BC4FC /* products.sqlite3 */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0C9CEE18D8AAA700137D82 /* InitialViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewControllerTest.m; sourceTree = "<group>"; };
 		0C3CAE8E1878FC76003A3ABD /* FoodNudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodNudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3CAE911878FC76003A3ABD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0C3CAE931878FC76003A3ABD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -95,6 +99,8 @@
 		0CD6005218C660F500915E02 /* Products.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Products.m; sourceTree = "<group>"; };
 		0CD6005418C6669300915E02 /* ProductsDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsDatabase.h; sourceTree = "<group>"; };
 		0CD6005518C6669300915E02 /* ProductsDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsDatabase.m; sourceTree = "<group>"; };
+		0CD9828318D9AB0C004B46B1 /* ProductsDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductsDatabaseTest.m; path = ../ProductsDatabaseTest.m; sourceTree = "<group>"; };
+		0CD9828518D9AF83004B46B1 /* DiaryDatabaseTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryDatabaseTest.m; sourceTree = "<group>"; };
 		0CE0570E18C93223001BC4FC /* products.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = products.sqlite3; path = ../products.sqlite3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +213,9 @@
 		0C3CAEB91878FC77003A3ABD /* FoodNudgeTests */ = {
 			isa = PBXGroup;
 			children = (
+				0CD9828518D9AF83004B46B1 /* DiaryDatabaseTest.m */,
+				0C0C9CEE18D8AAA700137D82 /* InitialViewControllerTest.m */,
+				0CD9828318D9AB0C004B46B1 /* ProductsDatabaseTest.m */,
 				0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */,
 				0C3CAEBA1878FC77003A3ABD /* Supporting Files */,
 			);
@@ -357,7 +366,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CD9828618D9AF83004B46B1 /* DiaryDatabaseTest.m in Sources */,
+				0CD9828418D9AB0C004B46B1 /* ProductsDatabaseTest.m in Sources */,
 				0C3CAEC01878FC77003A3ABD /* FoodNudgeTests.m in Sources */,
+				0C0C9CEF18D8AAA700137D82 /* InitialViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

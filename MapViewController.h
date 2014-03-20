@@ -19,9 +19,17 @@
     CLLocationManager *locationManager;
     CLLocationCoordinate2D currentCentre;
     int currenDist;
+    double walkingSpeed;
+    double runningSpeed;
+    double averageHeartRate;
+    double weight;
+    double age;
 }
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlForOverlay;
+@property (assign, nonatomic) double calories; //needs to be set from previous view controller
 
 -(IBAction)mapTypeChange:(id)sender;
+-(double) calculateWalking;
 @end

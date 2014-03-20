@@ -1,4 +1,5 @@
-//
+
+ //
 //  InitialViewController.m
 //  FoodNudge
 //
@@ -16,8 +17,8 @@
     [super viewWillAppear:NO];
     
     // Removes all instances of user default savings.
-    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+//    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+//    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
     NSUserDefaults *checkUser = [NSUserDefaults standardUserDefaults];
 

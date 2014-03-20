@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="aML-jE-6hu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -294,15 +294,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="10J-B7-s9T">
-                                <rect key="frame" x="74" y="75" width="180" height="131"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiI-mF-927">
-                                <rect key="frame" x="29" y="214" width="271" height="23"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="271" translatesAutoresizingMaskIntoConstraints="NO" id="LiI-mF-927">
+                                <rect key="frame" x="25" y="137" width="271" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -372,8 +367,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbN-wA-hmr">
-                                <rect key="frame" x="126" y="235" width="69" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbN-wA-hmr">
+                                <rect key="frame" x="126" y="195" width="69" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal">
@@ -387,9 +382,22 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <segue destination="3uO-RT-Gjb" kind="push" id="Yvy-kq-VV6"/>
+                                    <segue destination="3uO-RT-Gjb" kind="push" identifier="toMap" id="dnO-eq-WsA"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Calories left today:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgr-SM-Ir3">
+                                <rect key="frame" x="54" y="85" width="144" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdK-3i-ht3">
+                                <rect key="frame" x="206" y="85" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -404,8 +412,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calorieLabel" destination="cxT-9G-3G6" id="Snm-qW-ohf"/>
+                        <outlet property="caloriesLeftLabel" destination="bdK-3i-ht3" id="3z3-kU-epE"/>
                         <outlet property="fatLabel" destination="sCe-p1-suU" id="RDo-Kh-VPp"/>
-                        <outlet property="productImage" destination="10J-B7-s9T" id="ckp-9M-hRH"/>
                         <outlet property="productNameLabel" destination="LiI-mF-927" id="QT8-TN-7Iy"/>
                         <outlet property="saltLabel" destination="zWK-K4-vlf" id="lKV-RR-cqx"/>
                         <outlet property="satFatLabel" destination="rIu-KK-s7Z" id="uxp-cP-cRJ"/>
@@ -414,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ne-TZ-OF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2267" y="-138"/>
+            <point key="canvasLocation" x="2287" y="-122"/>
         </scene>
         <!--Initial View Controller - InitialViewController-->
         <scene sceneID="9dj-B8-OCI">
@@ -525,6 +533,7 @@
                         <outlet property="height" destination="Mr5-dY-Lam" id="J7z-on-1UN"/>
                         <outlet property="lastName" destination="ZOM-LI-MvR" id="OBl-H3-ObO"/>
                         <outlet property="name" destination="VFO-ta-Nu3" id="brt-TU-KG1"/>
+                        <outlet property="signUpButton" destination="Uaw-wk-fJp" id="iwi-2h-KJp"/>
                         <outlet property="weight" destination="2uS-RL-uo0" id="GwH-07-LKl"/>
                         <segue destination="8YX-ce-x5E" kind="modal" identifier="signUpSegueNo" modalTransitionStyle="flipHorizontal" id="pxC-C8-k7b"/>
                     </connections>
