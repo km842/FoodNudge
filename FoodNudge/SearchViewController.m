@@ -50,6 +50,7 @@
     [self.table reloadData];
 }
 
+//#pragma mark - Methods for search bar
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSString *withoutSpaces = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     [self searchValue: withoutSpaces];

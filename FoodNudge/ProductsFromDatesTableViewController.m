@@ -43,8 +43,6 @@
     _tableData = [[DiaryDatabase database] productIdFromDate:_date];
     [self.refreshControl endRefreshing];
     [self.tableView reloadData];
-
-    
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -59,6 +57,8 @@
     //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
     //    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     //    [conn start];
+    [[DiaryDatabase database] productIdFromDate:_date];
+    [self.table reloadData];
     
 }
 

@@ -165,32 +165,17 @@
 		0C3CAE971878FC76003A3ABD /* FoodNudge */ = {
 			isa = PBXGroup;
 			children = (
-				0C3CAEA31878FC76003A3ABD /* Main.storyboard */,
-				0CC5E14018CFC18E00D1C0C5 /* ProductsFromDatesTableViewController.h */,
-				0CC5E14118CFC18E00D1C0C5 /* ProductsFromDatesTableViewController.m */,
-				0C51B80B18BCDF8600F063A6 /* MapViewController.h */,
-				0C51B80C18BCDF8600F063A6 /* MapViewController.m */,
-				0C57672A18C100F8006108CF /* MapPoint.h */,
-				0C57672B18C100F8006108CF /* MapPoint.m */,
-				0C3F0EAF18B261A800C58E0C /* ProductsFromDatesViewController.h */,
-				0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */,
-				0C54922B187C5BE600086358 /* InitialViewController.h */,
-				0C54922C187C5BE600086358 /* InitialViewController.m */,
+				0C9F739618DC547900BC7583 /* Diary */,
+				0C9F739518DC546A00BC7583 /* Model */,
+				0C9F739418DC544F00BC7583 /* ProductSearch */,
+				0C9F739318DC543D00BC7583 /* Login */,
+				0C9F739218DC541500BC7583 /* Maps */,
 				0C3CAEA01878FC76003A3ABD /* AppDelegate.h */,
 				0C3CAEA11878FC76003A3ABD /* AppDelegate.m */,
-				0C99D95618994BC500C6BE92 /* ProductDetailViewController.h */,
-				0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */,
-				0CC5C22E188171BE00EC645B /* SearchViewController.h */,
-				0CC5C22F188171BE00EC645B /* SearchViewController.m */,
-				0CD6005118C660F500915E02 /* Products.h */,
-				0CD6005218C660F500915E02 /* Products.m */,
-				0CD6005418C6669300915E02 /* ProductsDatabase.h */,
-				0CD6005518C6669300915E02 /* ProductsDatabase.m */,
-				0C42667418C7A1D3001F1B40 /* DiaryDatabase.h */,
-				0C42667518C7A1D3001F1B40 /* DiaryDatabase.m */,
-				0C3F0EAC18B22D0300C58E0C /* DiaryDateViewController.h */,
-				0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */,
 				0C3CAEAC1878FC76003A3ABD /* Images.xcassets */,
+				0C3CAEA31878FC76003A3ABD /* Main.storyboard */,
+				0C3F0EAF18B261A800C58E0C /* ProductsFromDatesViewController.h */,
+				0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */,
 				0C934F9418D0D945001A0D11 /* ProgressHUD */,
 				0C3CAE981878FC76003A3ABD /* Supporting Files */,
 			);
@@ -240,6 +225,61 @@
 			);
 			name = ProgressHUD;
 			path = "ProgressHUD-master/ProgressHUD";
+			sourceTree = "<group>";
+		};
+		0C9F739218DC541500BC7583 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				0C57672A18C100F8006108CF /* MapPoint.h */,
+				0C57672B18C100F8006108CF /* MapPoint.m */,
+				0C51B80B18BCDF8600F063A6 /* MapViewController.h */,
+				0C51B80C18BCDF8600F063A6 /* MapViewController.m */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
+		0C9F739318DC543D00BC7583 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0C54922B187C5BE600086358 /* InitialViewController.h */,
+				0C54922C187C5BE600086358 /* InitialViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		0C9F739418DC544F00BC7583 /* ProductSearch */ = {
+			isa = PBXGroup;
+			children = (
+				0C99D95618994BC500C6BE92 /* ProductDetailViewController.h */,
+				0C99D95718994BC500C6BE92 /* ProductDetailViewController.m */,
+				0CC5C22E188171BE00EC645B /* SearchViewController.h */,
+				0CC5C22F188171BE00EC645B /* SearchViewController.m */,
+			);
+			name = ProductSearch;
+			sourceTree = "<group>";
+		};
+		0C9F739518DC546A00BC7583 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C42667418C7A1D3001F1B40 /* DiaryDatabase.h */,
+				0C42667518C7A1D3001F1B40 /* DiaryDatabase.m */,
+				0CD6005118C660F500915E02 /* Products.h */,
+				0CD6005218C660F500915E02 /* Products.m */,
+				0CD6005418C6669300915E02 /* ProductsDatabase.h */,
+				0CD6005518C6669300915E02 /* ProductsDatabase.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0C9F739618DC547900BC7583 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				0CC5E14018CFC18E00D1C0C5 /* ProductsFromDatesTableViewController.h */,
+				0CC5E14118CFC18E00D1C0C5 /* ProductsFromDatesTableViewController.m */,
+				0C3F0EAC18B22D0300C58E0C /* DiaryDateViewController.h */,
+				0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */,
+			);
+			name = Diary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

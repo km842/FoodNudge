@@ -143,7 +143,6 @@
     }
 
 #pragma mark - UIAlertiView Delegate Methods
-
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [alertView dismissWithClickedButtonIndex:0 animated:YES];
@@ -157,7 +156,7 @@
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSLog(@"USer id is : %@", [defaults objectForKey:@"id"]);
-        NSString *aposDate = [NSString stringWithFormat:@"\'%@\'", [dateFormat stringFromDate:date]];
+//        NSString *aposDate = [NSString stringWithFormat:@"\'%@\'", [dateFormat stringFromDate:date]];
         NSDictionary *diaryInfo = @ {
             @"id" : [defaults objectForKey:@"id"],
             @"productCode" : _productId,
@@ -181,6 +180,7 @@
     }
 }
 
+#pragma mark - Prepare for next view controller.
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"toMap"]) {
         MapViewController *dvc = (MapViewController*)segue.destinationViewController;
