@@ -97,6 +97,7 @@
     NSArray *productInfo = [[NSArray alloc] init];
     productInfo = [output objectForKey: @"Products"];
     
+    //check values here!
     NSString* calories = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Calories_Count"];
     NSString *salt = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Salt_Grammes"];
     NSString *sugar = [[productInfo objectAtIndex:0] valueForKey:@"RDA_Sugar_Grammes"];
@@ -174,8 +175,10 @@
 //        [connection start];
         NSURLResponse *response;
         NSError *errr;
+        [ProgressHUD show:@"Adding to database...." Interacton:YES];
         NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&errr];
-//        NSLog(@"check data %@", [responseData length] == 0);
+        (void) responseData;
+        [ProgressHUD showSuccess:@"Sucessfully added to database!" Interacton:YES];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

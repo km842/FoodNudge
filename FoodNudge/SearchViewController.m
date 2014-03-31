@@ -31,7 +31,7 @@
     [self.indicator startAnimating];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     NSString *url = [NSString stringWithFormat:@"http://km842.host.cs.st-andrews.ac.uk/sh/index.php/hello?id=%@", withName];
-    NSLog(@"%@", withName);
+//    NSLog(@"with name = %@", withName);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:url]];
     _responseData = [[NSMutableData alloc] init];
     

@@ -86,13 +86,17 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
-    NSString *date = [_tableData objectAtIndex:indexPath.row];
-    NSLog(@"%@", date);
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-mm-dd"];
-    NSDate *date1 = [formatter dateFromString:date];
-    [formatter setDateFormat:@"dd MMM, yyyy"];
-    cell.textLabel.text = [formatter stringFromDate:date1];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *date = [_tableData objectAtIndex:indexPath.row];
+    
+    NSLog(@"Date in ddvc is: %@", date);
+    NSDate *d = [formatter dateFromString:date];
+    [formatter setDateFormat:@"dd MMM, yy"];
+    NSLog(@"new date string is : %@", [formatter stringFromDate:d]);
+    
+    cell.textLabel.text = [formatter stringFromDate:d];
     return cell;
 }
 

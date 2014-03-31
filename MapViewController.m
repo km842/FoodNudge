@@ -39,9 +39,13 @@
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     locationManager.distanceFilter = 100;
     [locationManager startUpdatingLocation];
+    [self.mapView setShowsUserLocation:YES];
+
     
     MKCircle *radius = [MKCircle circleWithCenterCoordinate:locationManager.location.coordinate radius:[self calculateWalking] * walkingSpeed * 1000];
     [self.mapView addOverlay:radius];
+    MKCircle *running = [MKCircle circleWithCenterCoordinate:locationManager.location.coordinate radius:[self calculateRunning]*1000];
+    [self.mapView addOverlay:running];
     NSLog(@"radius here is: %f", [self calculateWalking]);
     
     self.mapView.showsPointsOfInterest = YES;
@@ -52,7 +56,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.mapView setShowsUserLocation:YES];
+//    [self.mapView setShowsUserLocation:YES];
     [_segmentedControl addTarget:self action:@selector(mapTypeChange:) forControlEvents:UIControlEventValueChanged];
     
 }
@@ -115,49 +119,16 @@
     [mapView setRegion:region animated:YES];
     [self queryGoogle:locationManager.location];
 //    NOT SURE IF THIS HACK WORKS!!!!!
-    mapView.delegate = nil;
+//    mapView.delegate = nil;
 }
 
-//-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-//    CLLocation *location = [locations lastObject];
-//    NSLog(@"lat%f - lon%f", location.coordinate.latitude, location.coordinate.longitude);
-//    [self queryGoogle:location];
-//    [locationManager stopUpdatingLocation];
-//    self.mapView.centerCoordinate = location.coordinate;
-//}
-
-//-(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-//    //Get the east and west points on the map so you can calculate the distance (zoom level) of the current map view.
-//    MKMapRect mRect = self.mapView.visibleMapRect;
-//    MKMapPoint eastMapPoint = MKMapPointMake(MKMapRectGetMinX(mRect), MKMapRectGetMidY(mRect));
-//    MKMapPoint westMapPoint = MKMapPointMake(MKMapRectGetMaxX(mRect), MKMapRectGetMidY(mRect));
-//    
-//    //Set your current distance instance variable.
-//    currenDist = MKMetersBetweenMapPoints(eastMapPoint, westMapPoint);
-//    
-//    //Set your current center point on the map instance variable.
-//    currentCentre = self.mapView.centerCoordinate;
-//}
 -(MKOverlayRenderer*) mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKCircleRenderer *renderer = [[MKCircleRenderer alloc] initWithOverlay:overlay];
     renderer.lineWidth = 1;
-    renderer.strokeColor = [UIColor colorWithRed:85.0/255.0 green:143.0/255.0 blue:220.0/255.0 alpha:1.0];
-    renderer.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
+    renderer.strokeColor = [UIColor colorWithRed:0.42 green:0.67 blue:0.91 alpha:1.0];
+    renderer.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.1];
     return renderer;
 }
-
-//-(void) mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-//    MKCoordinateRegion mapRegion;
-////    mapRegion.center = mapView.userLocation.coordinate;
-//    mapRegion.center = self.mapView.centerCoordinate;
-//    mapRegion.span.latitudeDelta = 0.2;
-//    mapRegion.span.longitudeDelta = 0.2;
-//    currentCentre = self.mapView.centerCoordinate;
-//    
-//    [mapView setRegion:mapRegion animated: YES];
-////    [self queryGoogle:self.mapView.userLocation.location];
-//
-//}
 
 -(void)plotPositions:(NSArray *)data {
     for (id<MKAnnotation> annotation in self.mapView.annotations) {

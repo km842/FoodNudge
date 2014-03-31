@@ -20,7 +20,7 @@
 		0C3CAEB51878FC76003A3ABD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAE911878FC76003A3ABD /* Foundation.framework */; };
 		0C3CAEB61878FC77003A3ABD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C3CAE951878FC76003A3ABD /* UIKit.framework */; };
 		0C3CAEBE1878FC77003A3ABD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBC1878FC77003A3ABD /* InfoPlist.strings */; };
-		0C3CAEC01878FC77003A3ABD /* FoodNudgeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */; };
+		0C3CAEC01878FC77003A3ABD /* ProductTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3CAEBF1878FC77003A3ABD /* ProductTests.m */; };
 		0C3F0EAE18B22D0300C58E0C /* DiaryDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */; };
 		0C3F0EB118B261A800C58E0C /* ProductsFromDatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3F0EB018B261A800C58E0C /* ProductsFromDatesViewController.m */; };
 		0C42667618C7A1D3001F1B40 /* DiaryDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C42667518C7A1D3001F1B40 /* DiaryDatabase.m */; };
@@ -70,7 +70,7 @@
 		0C3CAEB31878FC76003A3ABD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0C3CAEBB1878FC77003A3ABD /* FoodNudgeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FoodNudgeTests-Info.plist"; sourceTree = "<group>"; };
 		0C3CAEBD1878FC77003A3ABD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodNudgeTests.m; sourceTree = "<group>"; };
+		0C3CAEBF1878FC77003A3ABD /* ProductTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductTests.m; sourceTree = "<group>"; };
 		0C3F0EAC18B22D0300C58E0C /* DiaryDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiaryDateViewController.h; sourceTree = "<group>"; };
 		0C3F0EAD18B22D0300C58E0C /* DiaryDateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiaryDateViewController.m; sourceTree = "<group>"; };
 		0C3F0EAF18B261A800C58E0C /* ProductsFromDatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsFromDatesViewController.h; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				0CD9828518D9AF83004B46B1 /* DiaryDatabaseTest.m */,
 				0C0C9CEE18D8AAA700137D82 /* InitialViewControllerTest.m */,
 				0CD9828318D9AB0C004B46B1 /* ProductsDatabaseTest.m */,
-				0C3CAEBF1878FC77003A3ABD /* FoodNudgeTests.m */,
+				0C3CAEBF1878FC77003A3ABD /* ProductTests.m */,
 				0C3CAEBA1878FC77003A3ABD /* Supporting Files */,
 			);
 			path = FoodNudgeTests;
@@ -408,7 +408,7 @@
 			files = (
 				0CD9828618D9AF83004B46B1 /* DiaryDatabaseTest.m in Sources */,
 				0CD9828418D9AB0C004B46B1 /* ProductsDatabaseTest.m in Sources */,
-				0C3CAEC01878FC77003A3ABD /* FoodNudgeTests.m in Sources */,
+				0C3CAEC01878FC77003A3ABD /* ProductTests.m in Sources */,
 				0C0C9CEF18D8AAA700137D82 /* InitialViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
