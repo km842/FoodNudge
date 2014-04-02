@@ -46,9 +46,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "11"
-            endingLineNumber = "11"
-            landmarkName = "@interface Products"
-            landmarkType = "2">
+            endingLineNumber = "11">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,7 +55,7 @@
                   symbolName = "-[Products pid]"
                   moduleName = "FoodNudge"
                   urlString = "file:///Users/kunal/Desktop/Hons/SH_Proj/FoodNudge/FoodNudge/Products.h"
-                  timestampString = "417804773.542747"
+                  timestampString = "417971638.543538"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -71,7 +69,7 @@
                   symbolName = "-[Products setPid:]"
                   moduleName = "FoodNudge"
                   urlString = "file:///Users/kunal/Desktop/Hons/SH_Proj/FoodNudge/FoodNudge/Products.h"
-                  timestampString = "417804773.543766"
+                  timestampString = "417971638.543814"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -111,6 +109,50 @@
             endingLineNumber = "34"
             landmarkName = "-testSimpleAllocation"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ProductTests testSimpleAllocation]"
+                  moduleName = "FoodNudgeTests"
+                  urlString = "file:///Users/kunal/Desktop/Hons/SH_Proj/FoodNudge/FoodNudgeTests/ProductTests.m"
+                  timestampString = "417971648.998657"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "78">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ProductTests testSimpleAllocation]"
+                  moduleName = "FoodNudgeTests"
+                  urlString = "file:///Users/kunal/Desktop/Hons/SH_Proj/FoodNudge/FoodNudgeTests/ProductTests.m"
+                  timestampString = "417971648.999084"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "484">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ProductTests testSimpleAllocation]"
+                  moduleName = "FoodNudgeTests"
+                  urlString = "file:///Users/kunal/Desktop/Hons/SH_Proj/FoodNudge/FoodNudgeTests/ProductTests.m"
+                  timestampString = "417971648.999422"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "748">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

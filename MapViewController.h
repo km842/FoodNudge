@@ -25,7 +25,6 @@
     double runningSpeed;
     double averageHeartRate;
     double weight;
-    double age;
 }
 
 /*!

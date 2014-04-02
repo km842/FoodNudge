@@ -28,6 +28,8 @@
 		0C51B80D18BCDF8600F063A6 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C51B80C18BCDF8600F063A6 /* MapViewController.m */; };
 		0C54922D187C5BE600086358 /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C54922C187C5BE600086358 /* InitialViewController.m */; };
 		0C57672C18C100F8006108CF /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C57672B18C100F8006108CF /* MapPoint.m */; };
+		0C67DEDE18EB2DC100CC748A /* launchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C67DEDD18EB2DC100CC748A /* launchImage.png */; };
+		0C67DEE018EB308300CC748A /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C67DEDF18EB308300CC748A /* appIcon.png */; };
 		0C6D3664189ABB7A0081FD0B /* grid.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C6D3663189ABB7A0081FD0B /* grid.jpg */; };
 		0C934FA318D0D945001A0D11 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C934F9518D0D945001A0D11 /* ProgressHUD.bundle */; };
 		0C934FA418D0D945001A0D11 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C934F9718D0D945001A0D11 /* ProgressHUD.m */; };
@@ -84,6 +86,8 @@
 		0C54922C187C5BE600086358 /* InitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
 		0C57672A18C100F8006108CF /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
 		0C57672B18C100F8006108CF /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
+		0C67DEDD18EB2DC100CC748A /* launchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launchImage.png; path = ../launchImage.png; sourceTree = "<group>"; };
+		0C67DEDF18EB308300CC748A /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appIcon.png; path = ../appIcon.png; sourceTree = "<group>"; };
 		0C6D3663189ABB7A0081FD0B /* grid.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = grid.jpg; path = ../../grid.jpg; sourceTree = "<group>"; };
 		0C934F9518D0D945001A0D11 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		0C934F9618D0D945001A0D11 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 		0C3CAE981878FC76003A3ABD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0C67DEDF18EB308300CC748A /* appIcon.png */,
+				0C67DEDD18EB2DC100CC748A /* launchImage.png */,
 				0CE0570E18C93223001BC4FC /* products.sqlite3 */,
 				0C6D3663189ABB7A0081FD0B /* grid.jpg */,
 				0C3CAE991878FC76003A3ABD /* FoodNudge-Info.plist */,
@@ -361,10 +367,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C67DEE018EB308300CC748A /* appIcon.png in Resources */,
 				0C934FA318D0D945001A0D11 /* ProgressHUD.bundle in Resources */,
 				0C3CAEAD1878FC76003A3ABD /* Images.xcassets in Resources */,
 				0C6D3664189ABB7A0081FD0B /* grid.jpg in Resources */,
 				0CE0570F18C93223001BC4FC /* products.sqlite3 in Resources */,
+				0C67DEDE18EB2DC100CC748A /* launchImage.png in Resources */,
 				0C3CAE9C1878FC76003A3ABD /* InfoPlist.strings in Resources */,
 				0C3CAEA51878FC76003A3ABD /* Main.storyboard in Resources */,
 			);
@@ -532,7 +540,7 @@
 				GCC_PREFIX_HEADER = "FoodNudge/FoodNudge-Prefix.pch";
 				INFOPLIST_FILE = "FoodNudge/FoodNudge-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "FDCF6302-ABCB-4039-A543-F281FE1510D3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -542,13 +550,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Mandalia (AA2W59Y572)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kunal Mandalia (AA2W59Y572)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FoodNudge/FoodNudge-Prefix.pch";
 				INFOPLIST_FILE = "FoodNudge/FoodNudge-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "FDCF6302-ABCB-4039-A543-F281FE1510D3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

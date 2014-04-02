@@ -115,7 +115,7 @@
 
 -(void) mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
     MKCoordinateRegion region;
-    region = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate, 3000, 3000);
+    region = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate, 6000, 6000);
     [mapView setRegion:region animated:YES];
     [self queryGoogle:locationManager.location];
 //    NOT SURE IF THIS HACK WORKS!!!!!
@@ -179,7 +179,29 @@
 }
 
 -(double)VO2MAX {
-    double age = 23;
+//    double age = 23;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy"];
+    NSString *dateString = [defaults objectForKey:@"dob"];
+    NSDate *og = [formatter dateFromString:dateString];
+    NSLog(@"date string is: %@", dateString);
+    NSLog(@"og is :%@", og);
+    [formatter setDateFormat:@"MM/dd/yyyy"];
+    NSLog(@"formetted : %@", [formatter stringFromDate:og]);
+    NSString *changed = [formatter stringFromDate:og];
+    NSDate *bday = [formatter dateFromString:changed];
+    NSLog(@"bday is:%@",bday);
+    NSDate *now = [NSDate date];
+    
+    NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                       components:NSYearCalendarUnit
+                                       fromDate:bday
+                                       toDate:now
+                                       options:0];
+    
+    double age = [ageComponents year];
+    NSLog(@"age is : %f", age);
     double mhr = 208 - (0.7*age); //user defaults
     double vo2 = 15.3 * (mhr/averageHeartRate);
     double cff;
